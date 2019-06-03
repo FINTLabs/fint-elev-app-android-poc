@@ -4,56 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|top"
+    android:background="@color/colorWhite"
+    android:gravity="center"
     android:orientation="vertical"
-    android:weightSum="100"
     tools:context=".MainActivity"
-    android:background="@color/colorWhite">
+    android:weightSum="100">
 
 
     <ImageView
         android:id="@+id/main_activity_videregande_skole_tittel"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/standard_dimen"
         android:layout_weight="15"
+        android:layout_gravity="center"
         android:src="@drawable/skien_vgs_logo"
-        />
+        android:layout_marginTop="@dimen/standard_dimen"/>
 
 
     <ImageView
         android:id="@+id/forside_student_bilde"
         android:layout_width="250dp"
         android:layout_height="0dp"
+        android:layout_weight="40"
         android:layout_gravity="center"
         android:layout_margin="@dimen/standard_dimen"
-        android:layout_weight="45"
+        android:background="@drawable/bilderamme"
+        android:elevation="25dp"
         android:scaleType="centerInside"
-        android:background="@drawable/ramme"
-        android:src="@drawable/student_profilbilde"
-        android:elevation="25dp"/>
+        android:src="@drawable/student_profilbilde" />
 
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_weight="25"
-        android:orientation="vertical"
-        android:gravity="center|top"
-        android:background="@drawable/ramme">
+        android:background="@drawable/tekstramme"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anders Johansen"
             android:layout_margin="@dimen/standard_dimen"
-            style="@style/Base.TextAppearance.AppCompat.Headline"/>
+            android:text="Anders Johansen" />
+
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="29.11.2001"
             android:layout_margin="@dimen/standard_dimen"
-            style="@style/Base.TextAppearance.AppCompat.Body1"/>
+            android:text="Skien videregående skole" />
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_dimen"
+            android:text="29.11.2001" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:gravity="center" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_gravity="bottom"
+        android:textColor="@color/colorWhite"
+        android:text="GYLDIG STUDENTBEVIS"
+        android:background="@color/colorPrimary"
+        android:gravity="center" />
 
 
 </LinearLayout>
