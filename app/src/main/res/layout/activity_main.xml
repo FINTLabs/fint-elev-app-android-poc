@@ -50,18 +50,18 @@
             android:text="Anders Johansen" />
 
         <TextView
-            style="@style/Base.TextAppearance.AppCompat.Body1"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_dimen"
+            android:text="29.11.2001" />
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_dimen"
             android:text="Skien videregående skole" />
 
-        <TextView
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_dimen"
-            android:text="29.11.2001" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,7 +77,8 @@
         android:textColor="@color/colorWhite"
         android:text="GYLDIG STUDENTBEVIS"
         android:background="@color/colorPrimary"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textStyle="bold"/>
 
 
 </LinearLayout>
