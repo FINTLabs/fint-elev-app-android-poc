@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/one"
-        android:title="Cut"
-        android:icon="@drawable/ic_action_cut"
-        android:orderInCategory="1"/>
+        android:id="@+id/fab_buss"
+        android:title="Busskort"
+        android:icon="@drawable/ic_directions_bus_white_24dp"
+        android:orderInCategory="1"
+        />
     <item
-        android:id="@+id/two"
-        android:title="Copy"
-        android:icon="@drawable/ic_action_copy"
+        android:id="@+id/fab_bibliotek"
+        android:title="Bibliotekskort"
+        android:icon="@drawable/ic_library_books_white_24dp"
         android:orderInCategory="2"/>
     <item
-        android:id="@+id/three"
-        android:title="Paste"
-        android:icon="@drawable/ic_action_paste"
+        android:id="@+id/fab_open_hovedinngang_door"
+        android:title="Åpne hovedinngang"
+        android:icon="@drawable/ic_vpn_key_white_24dp"
         android:orderInCategory="3"/>
+
+    <item
+        android:id="@+id/fab_open_bibliotek_door"
+        android:title="Åpne bibliotek"
+        android:icon="@drawable/ic_vpn_key_white_24dp"
+        android:orderInCategory="4"/>
 </menu>

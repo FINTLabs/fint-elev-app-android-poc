@@ -98,9 +98,12 @@
 
     <io.github.kobakei.materialfabspeeddial.FabSpeedDial
         android:id="@+id/fab_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
-        app:fab_menu="@menu/fab"/>
+        app:fab_menu="@menu/fab"
+        app:fab_miniFabTextColor="@color/colorWhite"
+        app:fab_touchGuardColor="@color/colorTransparent"
+        />
 
 </FrameLayout>

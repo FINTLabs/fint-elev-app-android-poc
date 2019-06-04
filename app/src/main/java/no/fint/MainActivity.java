@@ -2,9 +2,15 @@ package no.fint;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +28,8 @@ public class MainActivity extends AppCompatActivity {
         }
         ImageView studentProfilBilde = findViewById(R.id.forside_student_bilde);
         studentProfilBilde.setClipToOutline(true);
+
+
+        final FabSpeedDial fabSpeedDialMeny = findViewById(R.id.fab_menu);
     }
 }
