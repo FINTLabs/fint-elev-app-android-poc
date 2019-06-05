@@ -4,96 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="100"
+        android:background="@color/colorWhite"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@color/colorWhite">
+        android:weightSum="100">
 
 
-    <ImageView
-        android:id="@+id/main_activity_school_title_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:layout_gravity="center"
-        android:src="@drawable/skien_vgs_logo"
-        android:layout_marginTop="@dimen/standard_dimen"/>
-
-
-    <ImageView
-        android:id="@+id/front_page_student_picture"
-        android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_weight="40"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/standard_dimen"
-        android:background="@drawable/picture_frame"
-        android:elevation="25dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/student_profile_picture" />
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_weight="25"
-        android:background="@drawable/text_frame"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/Base.TextAppearance.AppCompat.Headline"
+        <ImageView
+            android:id="@+id/main_activity_school_title_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_dimen"
-            android:text="Anders Johansen" />
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/standard_dimen"
+            android:layout_weight="15"
+            android:src="@drawable/skien_vgs_logo" />
 
-        <TextView
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_dimen"
-            android:text="29.11.2001" />
-        <TextView
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_dimen"
-            android:text="Skien videregående skole" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/front_page_student_picture"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/standard_dimen"
+            android:layout_weight="40"
+            android:background="@drawable/picture_frame"
+            android:elevation="25dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/student_profile_picture" />
+
+        <LinearLayout
+
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:background="@drawable/text_frame"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:text="Anders Johansen" />
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:text="29.11.2001" />
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:text="Skien videregående skole" />
+
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:gravity="center" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:layout_gravity="bottom"
-        android:textColor="@color/colorWhite"
-        android:text="GYLDIG ELEVBEVIS"
-        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:textStyle="bold"/>
-        <TextView
+        android:orientation="vertical"/>
+        <LinearLayout
+            android:id="@+id/student_bottom_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
-            android:layout_gravity="bottom"
-            android:textColor="@color/colorWhite"
-            android:text="Skoleåret 2019/2020"
-            android:background="@color/colorPrimary"
+            android:layout_weight="15"
             android:gravity="center"
-            android:textStyle="bold"/>
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="GYLDIG ELEVBEVIS"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="Skoleåret 2019/2020"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <io.github.kobakei.materialfabspeeddial.FabSpeedDial
@@ -101,12 +109,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
-        app:fab_menu="@menu/fab"
-        app:fab_miniFabTextColor="@color/colorWhite"
-        app:fab_touchGuardColor="@color/colorTransparent"
         app:fab_fabDrawable="@drawable/ic_menu_white_24dp"
         app:fab_fabRotationAngle="90"
-        />
+        app:fab_menu="@menu/fab"
+        app:fab_miniFabTextColor="@color/colorWhite"
+        app:fab_touchGuardColor="@color/colorTransparent" />
 
     <FrameLayout
         android:id="@+id/fragment_container"

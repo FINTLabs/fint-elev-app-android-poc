@@ -1,5 +1,8 @@
 package no.fint;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
@@ -10,10 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
@@ -43,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         });
         studentProfilePicture.performClick();
         studentProfilePicture.setClipToOutline(true);
+
+        LinearLayout linearLayoutBottomFrontPage = findViewById(R.id.student_bottom_text);
+        AnimatorSet glow = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.glow_animation);
+        glow.setTarget(linearLayoutBottomFrontPage);
+        glow.start();
 
 
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
