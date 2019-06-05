@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-public class BusCardFragment extends Fragment {
-
+public class BusCardFragment extends Fragment implements View.OnClickListener {
+    LinearLayout linearLayoutTop;
+    LinearLayout linearLayoutBottom;
     private OnFragmentInteractionListener mListener;
 
     public BusCardFragment() {
@@ -23,13 +25,18 @@ public class BusCardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bus_card, container, false);
+        View view = inflater.inflate(R.layout.fragment_bus_card, container, false);
+        linearLayoutTop = view.findViewById(R.id.bus_fragment_top_layout);
+        linearLayoutBottom = view.findViewById(R.id.bus_fragment_bottom_layout);
+        linearLayoutBottom.setOnClickListener(this);
+        linearLayoutTop.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -40,20 +47,16 @@ public class BusCardFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == linearLayoutTop.getId() || v.getId() == linearLayoutBottom.getId()){
+            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+        }
     }
 
     /**
