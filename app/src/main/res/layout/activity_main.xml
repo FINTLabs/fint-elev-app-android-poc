@@ -38,12 +38,40 @@
             android:src="@drawable/student_profile_picture" />
 
         <LinearLayout
-
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="25"
+            android:layout_weight="15"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="GYLDIG ELEVBEVIS"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="Skoleåret 2019/2020"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
             android:background="@drawable/text_frame"
-            android:elevation="10dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -70,38 +98,17 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:gravity="center"
-        android:orientation="vertical"/>
+        <!--
         <LinearLayout
-            android:id="@+id/student_bottom_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="5"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical" />
+            -->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="GYLDIG ELEVBEVIS"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="Skoleåret 2019/2020"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
-        </LinearLayout>
+
     </LinearLayout>
 
     <io.github.kobakei.materialfabspeeddial.FabSpeedDial
@@ -109,9 +116,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
+        app:fab_fabBackgroundColor="@color/colorPrimary"
         app:fab_fabDrawable="@drawable/ic_menu_white_24dp"
         app:fab_fabRotationAngle="90"
         app:fab_menu="@menu/fab"
+        app:fab_miniFabBackgroundColor="@color/colorPrimary"
         app:fab_miniFabTextColor="@color/colorWhite"
         app:fab_touchGuardColor="@color/colorTransparent" />
 
