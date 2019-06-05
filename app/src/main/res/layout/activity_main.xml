@@ -104,6 +104,8 @@
         app:fab_menu="@menu/fab"
         app:fab_miniFabTextColor="@color/colorWhite"
         app:fab_touchGuardColor="@color/colorTransparent"
+        app:fab_fabDrawable="@drawable/ic_menu_white_24dp"
+        app:fab_fabRotationAngle="90"
         />
 
     <FrameLayout
