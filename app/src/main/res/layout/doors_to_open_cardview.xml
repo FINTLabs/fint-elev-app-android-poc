@@ -40,12 +40,14 @@
                 android:layout_toRightOf="@+id/door_photo" />
 
             <Button
+                android:id="@+id/button_open_door"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Åpne meg"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:backgroundTint="@color/colorPrimary"/>
 
         </RelativeLayout>
 

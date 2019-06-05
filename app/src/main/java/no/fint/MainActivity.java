@@ -56,13 +56,7 @@ public class MainActivity extends AppCompatActivity {
         glow.setTarget(linearLayoutBottomFrontPage);
         glow.start();
 
-
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
-
-        FloatingActionButton miniFab0 = fabSpeedDialMenu.getMiniFab(0);
-        FloatingActionButton miniFab1 = fabSpeedDialMenu.getMiniFab(1);
-        FloatingActionButton miniFab2 = fabSpeedDialMenu.getMiniFab(2);
-        final int id = miniFab0.getId();
 
         fabSpeedDialMenu.addOnMenuItemClickListener(new FabSpeedDial.OnMenuItemClickListener() {
             @Override

@@ -17,14 +17,14 @@ public class UnlockDoorsListActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view_for_doors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        DoorRecyclerViewAdapter doorRecyclerViewAdapter = new DoorRecyclerViewAdapter(doors);
+        DoorRecyclerViewAdapter doorRecyclerViewAdapter = new DoorRecyclerViewAdapter(doors, this);
         recyclerView.setAdapter(doorRecyclerViewAdapter);
     }
 
     private ArrayList<Door> createDoors() {
         ArrayList<Door> doors = new ArrayList<Door>();
         doors.add(new Door("Hovedinngang", "1001", R.drawable.school_main_door));
-        doors.add(new Door("Bilblioteksdør","1002", R.drawable.library_door));
+        doors.add(new Door("Bilbliotekdør","1002", R.drawable.library_door));
         doors.add(new Door("Kantinedør","1003", R.drawable.cafeteria_door));
         return doors;
     }
