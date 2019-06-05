@@ -34,7 +34,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="30"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
+
+
+            <TextView
+                android:id="@+id/bus_card_verified_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bus_card_verified_frame"
+                android:text="BUSSKORT GODKJENT"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:padding="@dimen/bus_card_verified_dimen"/>
+
         </LinearLayout>
     </LinearLayout>
 

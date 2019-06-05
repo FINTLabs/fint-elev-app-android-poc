@@ -1,5 +1,7 @@
 package no.fint;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class BusCardFragment extends Fragment implements View.OnClickListener {
     LinearLayout linearLayoutTop;
@@ -36,6 +39,12 @@ public class BusCardFragment extends Fragment implements View.OnClickListener {
         linearLayoutBottom = view.findViewById(R.id.bus_fragment_bottom_layout);
         linearLayoutBottom.setOnClickListener(this);
         linearLayoutTop.setOnClickListener(this);
+
+        TextView verifiedBusCardText = view.findViewById(R.id.bus_card_verified_text);
+        AnimatorSet glow = (AnimatorSet) AnimatorInflater.loadAnimator(view.getContext(), R.animator.verified_animation);
+        glow.setTarget(verifiedBusCardText);
+        glow.start();
+
         return view;
     }
 
