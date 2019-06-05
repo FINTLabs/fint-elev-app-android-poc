@@ -14,7 +14,7 @@
         android:gravity="center">
 
         <LinearLayout
-            android:id="@+id/bus_fragment_top_layout"
+            android:id="@+id/library_card_fragment_top"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="30"
@@ -30,7 +30,7 @@
             android:layout_margin="@dimen/standard_dimen"/>
 
         <LinearLayout
-            android:id="@+id/bus_fragment_bottom_layout"
+            android:id="@+id/library_card_fragment_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="30"
@@ -39,11 +39,10 @@
 
 
             <TextView
-                android:id="@+id/bus_card_verified_text"
+                android:id="@+id/library_card_verified_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bus_card_verified_frame"
-                android:text="BUSSKORT GODKJENT"
+                android:text="GODKJENT BIBLIOTEKSKORT"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:padding="@dimen/bus_card_verified_dimen"/>

@@ -76,20 +76,16 @@ public class MainActivity extends AppCompatActivity {
                             busCardFragment).addToBackStack(null).commit();
                 }
                 if (label.getText().equals("Bibliotekskort")){ //Need to find a better solution than this if-statement
-                    BusCardFragment busCardFragment = BusCardFragment.newInstance();
+                    LibraryCardFragment libraryCardFragment = LibraryCardFragment.newInstance();
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager
                             .beginTransaction();
                     fragmentTransaction.add(R.id.fragment_container,
-                            busCardFragment).addToBackStack(null).commit();
+                            libraryCardFragment).addToBackStack(null).commit();
                 }
                 if (label.getText().equals("Åpne dører")){ //Need to find a better solution than this if-statement
-                    BusCardFragment busCardFragment = BusCardFragment.newInstance();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager
-                            .beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container,
-                            busCardFragment).addToBackStack(null).commit();
+                    Intent doorIntent = new Intent(getApplicationContext(), UnlockDoorsListActivity.class);
+                    getApplication().startActivity(doorIntent);
                 }
             }
         });
