@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoggInnActivity"
+            android:name=".LogInActivity"
             android:label="Logg inn"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MainActivity"

@@ -3,7 +3,7 @@ package no.fint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class LoggInnActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

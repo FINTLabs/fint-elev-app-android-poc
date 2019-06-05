@@ -17,7 +17,7 @@
 
 
     <ImageView
-        android:id="@+id/main_activity_videregande_skole_tittel"
+        android:id="@+id/main_activity_school_title_logo"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="15"
@@ -27,22 +27,22 @@
 
 
     <ImageView
-        android:id="@+id/forside_student_bilde"
+        android:id="@+id/front_page_student_picture"
         android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_weight="40"
         android:layout_gravity="center"
         android:layout_margin="@dimen/standard_dimen"
-        android:background="@drawable/bilderamme"
+        android:background="@drawable/picture_frame"
         android:elevation="25dp"
         android:scaleType="centerInside"
-        android:src="@drawable/student_profilbilde" />
+        android:src="@drawable/student_profile_picture" />
 
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_weight="25"
-        android:background="@drawable/tekstramme"
+        android:background="@drawable/text_frame"
         android:elevation="10dp"
         android:gravity="center"
         android:orientation="vertical">
@@ -80,7 +80,7 @@
         android:layout_weight="10"
         android:layout_gravity="bottom"
         android:textColor="@color/colorWhite"
-        android:text="GYLDIG STUDENTBEVIS"
+        android:text="GYLDIG ELEVBEVIS"
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:textStyle="bold"/>
@@ -90,7 +90,7 @@
             android:layout_weight="5"
             android:layout_gravity="bottom"
             android:textColor="@color/colorWhite"
-            android:text="Januar 2019 - August 2019"
+            android:text="Skoleåret 2019/2020"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:textStyle="bold"/>
@@ -111,6 +111,6 @@
         android:name=".BussKortFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_buss_kort" />
+        tools:layout="@layout/fragment_bus_card" />
 
 </FrameLayout>
