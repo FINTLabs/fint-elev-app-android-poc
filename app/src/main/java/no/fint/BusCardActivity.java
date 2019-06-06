@@ -61,15 +61,26 @@ public class BusCardActivity extends AppCompatActivity {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
 
-                if (itemId == R.id.fab_buss) { //Need to find a better solution than this if-statement
+                if (itemId == R.id.fab_buss) {
                     getFragment(BusCardFragment.newInstance());
                 }
-                if (itemId == R.id.fab_library) { //Need to find a better solution than this if-statement
+                if (itemId == R.id.fab_library) {
                     getFragment(LibraryCardFragment.newInstance());
                 }
-                if (itemId == R.id.fab_open_doors) { //Need to find a better solution than this if-statement
+                if (itemId == R.id.fab_open_doors) {
                     getApplication().startActivity(
                             new Intent(getApplicationContext(), UnlockDoorsListActivity.class)
+                    );
+                }
+                if (itemId == R.id.fab_log_out) {
+                    getSharedPreferences(
+                            FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE)
+                            .edit()
+                            .remove(FintStudentAppSharedPreferences.isLoggedIn)
+                            .apply()
+                    ;
+                    getApplication().startActivity(
+                            new Intent(getApplicationContext(), LogInActivity.class)
                     );
                 }
             }

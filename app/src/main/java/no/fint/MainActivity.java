@@ -20,7 +20,7 @@ import android.widget.TextView;
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
 public class MainActivity extends AppCompatActivity {
-
+    Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
         //Starts LogInActivity is not logged inn
         //hard coded to be true, but set to false to start intent
         SharedPreferences mainActivitySharedPreferences = getSharedPreferences(FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE);
-        if (mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
+        if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
             Intent logInIntent = new Intent(this, LogInActivity.class);
             startActivity(logInIntent);
         }
+        String brukernavn = getIntent().getExtras().getString("Brukernavn");
+         student = getStudentData(brukernavn);
 
         School school = new School("01", "Skien videregående skole");
         final Student newStudent = new Student("Anders", "Johansen", "15.10.2002", "123987", school, R.drawable.student_profile_picture);
@@ -71,21 +73,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
 
-                if (itemId == R.id.fab_buss) { //Need to find a better solution than this if-statement
+                if (itemId == R.id.fab_buss) {
                     Intent intent = new Intent(getApplicationContext(), BusCardActivity.class);
                     intent.putExtra("student", newStudent);
                     startActivity(intent);
                 }
-                if (itemId == R.id.fab_library) { //Need to find a better solution than this if-statement
+                if (itemId == R.id.fab_library) {
                     getFragment(LibraryCardFragment.newInstance());
                 }
-                if (itemId == R.id.fab_open_doors) { //Need to find a better solution than this if-statement
+                if (itemId == R.id.fab_open_doors) {
                     getApplication().startActivity(
                             new Intent(getApplicationContext(), UnlockDoorsListActivity.class)
                     );
                 }
+                if (itemId == R.id.fab_log_out) {
+                    getSharedPreferences(
+                            FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE)
+                            .edit()
+                            .remove(FintStudentAppSharedPreferences.isLoggedIn)
+                            .apply()
+                    ;
+                    getApplication().startActivity(
+                            new Intent(getApplicationContext(), LogInActivity.class)
+                    );
+                }
             }
         });
+
+
+    }
+
+    private Student getStudentData(String brukernavn) {
+
+
     }
 
     private void getFragment(Fragment fragment) {
