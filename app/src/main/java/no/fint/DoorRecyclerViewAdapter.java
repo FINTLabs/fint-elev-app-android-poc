@@ -18,10 +18,12 @@ import java.util.ArrayList;
 public class DoorRecyclerViewAdapter extends RecyclerView.Adapter<DoorRecyclerViewAdapter.DoorViewHolder> {
     ArrayList<Door> doors;
     Context context;
-    DoorRecyclerViewAdapter(ArrayList<Door> doors, Context context){
+
+    DoorRecyclerViewAdapter(ArrayList<Door> doors, Context context) {
         this.doors = doors;
         this.context = context;
     }
+
     public static class DoorViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView doorName;
@@ -31,11 +33,11 @@ public class DoorRecyclerViewAdapter extends RecyclerView.Adapter<DoorRecyclerVi
 
         DoorViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.doors_card_view);
-            doorName = (TextView)itemView.findViewById(R.id.door_name);
-            doorID = (TextView)itemView.findViewById(R.id.door_id);
-            doorPhoto = (ImageView)itemView.findViewById(R.id.door_photo);
-            openDoor = (Button)itemView.findViewById(R.id.button_open_door);
+            cv = (CardView) itemView.findViewById(R.id.doors_card_view);
+            doorName = (TextView) itemView.findViewById(R.id.door_name);
+            doorID = (TextView) itemView.findViewById(R.id.door_id);
+            doorPhoto = (ImageView) itemView.findViewById(R.id.door_photo);
+            openDoor = (Button) itemView.findViewById(R.id.button_open_door);
         }
     }
 
@@ -66,6 +68,7 @@ public class DoorRecyclerViewAdapter extends RecyclerView.Adapter<DoorRecyclerVi
     public int getItemCount() {
         return doors.size();
     }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);

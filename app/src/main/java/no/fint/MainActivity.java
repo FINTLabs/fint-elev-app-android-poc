@@ -1,12 +1,11 @@
 package no.fint;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
@@ -59,27 +57,27 @@ public class MainActivity extends AppCompatActivity {
         fabSpeedDialMenu.addOnMenuItemClickListener(new FabSpeedDial.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
-                if (label.getText().equals("Skoleskyss")) { //Need to find a better solution than this if-statement
-                    BusCardFragment busCardFragment = BusCardFragment.newInstance();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager
-                            .beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container,
-                            busCardFragment).addToBackStack(null).commit();
+
+                if (itemId == R.id.fab_buss) { //Need to find a better solution than this if-statement
+                    getFragment(BusCardFragment.newInstance());
                 }
-                if (label.getText().equals("Bibliotekskort")) { //Need to find a better solution than this if-statement
-                    LibraryCardFragment libraryCardFragment = LibraryCardFragment.newInstance();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager
-                            .beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container,
-                            libraryCardFragment).addToBackStack(null).commit();
+                if (itemId == R.id.fab_library) { //Need to find a better solution than this if-statement
+                    getFragment(LibraryCardFragment.newInstance());
                 }
-                if (label.getText().equals("Åpne dører")) { //Need to find a better solution than this if-statement
-                    Intent doorIntent = new Intent(getApplicationContext(), UnlockDoorsListActivity.class);
-                    getApplication().startActivity(doorIntent);
+                if (itemId == R.id.fab_open_doors) { //Need to find a better solution than this if-statement
+                    getApplication().startActivity(
+                            new Intent(getApplicationContext(), UnlockDoorsListActivity.class)
+                    );
                 }
             }
         });
+    }
+
+    private void getFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager
+                .beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container,
+                fragment).addToBackStack(null).commit();
     }
 }

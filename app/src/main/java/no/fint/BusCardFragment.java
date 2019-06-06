@@ -2,7 +2,6 @@ package no.fint;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -63,7 +62,7 @@ public class BusCardFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == linearLayoutTop.getId() || v.getId() == linearLayoutBottom.getId()){
+        if (v.getId() == linearLayoutTop.getId() || v.getId() == linearLayoutBottom.getId()) {
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
     }

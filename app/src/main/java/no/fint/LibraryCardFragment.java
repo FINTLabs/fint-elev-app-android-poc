@@ -62,7 +62,7 @@ public class LibraryCardFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == linearLayoutTop.getId() || v.getId() == linearLayoutBottom.getId()){
+        if (v.getId() == linearLayoutTop.getId() || v.getId() == linearLayoutBottom.getId()) {
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
     }

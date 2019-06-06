@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fab_buss"
+        android:tag="1"
         android:title="Skoleskyss"
         android:icon="@drawable/ic_directions_bus_white_24dp"
         android:orderInCategory="1"
