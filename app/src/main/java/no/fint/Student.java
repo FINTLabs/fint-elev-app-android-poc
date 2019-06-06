@@ -3,8 +3,6 @@ package no.fint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 public class Student implements Parcelable {
     private String firstName;
     private String lastName;

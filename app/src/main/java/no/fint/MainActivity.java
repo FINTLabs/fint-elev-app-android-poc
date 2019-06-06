@@ -21,6 +21,7 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
 public class MainActivity extends AppCompatActivity {
     Student student;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(logInIntent);
         }
         String brukernavn = getIntent().getExtras().getString("Brukernavn");
-         student = getStudentData(brukernavn);
+        student = getStudentData(brukernavn);
 
         School school = new School("01", "Skien videregående skole");
         final Student newStudent = new Student("Anders", "Johansen", "15.10.2002", "123987", school, R.drawable.student_profile_picture);
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Student getStudentData(String brukernavn) {
 
-
+        return null;
     }
 
     private void getFragment(Fragment fragment) {
