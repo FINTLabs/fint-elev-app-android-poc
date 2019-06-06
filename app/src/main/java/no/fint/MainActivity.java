@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 studentProfilePicture.startAnimation(rotate);
             }
         });
-        studentProfilePicture.performClick();
+
         studentProfilePicture.setClipToOutline(true);
 
         /*
