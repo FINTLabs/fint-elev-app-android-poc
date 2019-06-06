@@ -3,6 +3,7 @@ package no.fint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -19,27 +20,18 @@ import android.widget.TextView;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
-public class MainActivity extends AppCompatActivity {
+public class BusCardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bus_card);
 
-        //Starts LogInActivity is not logged inn
-        //hard coded to be true, but set to false to start intent
-        SharedPreferences mainActivitySharedPreferences = getSharedPreferences(FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE);
-        if (mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
-            Intent logInIntent = new Intent(this, LogInActivity.class);
-            startActivity(logInIntent);
-        }
-
-        School school = new School("01", "Skien videregående skole");
-        final Student newStudent = new Student("Anders", "Johansen", "15.10.2002", "123987", school, R.drawable.student_profile_picture);
-
-        LinearLayout linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
-        final ImageView studentProfilePicture = findViewById(R.id.front_page_student_picture);
-        studentProfilePicture.setImageResource(newStudent.getPhotoId());
+        Intent intent = getIntent();
+        Student student = intent.getParcelableExtra("student");
+        LinearLayout linearLayoutStudentProof = findViewById(R.id.bus_proof_text_linear_layout);
+        final ImageView studentProfilePicture = findViewById(R.id.bus_page_student_picture);
+        studentProfilePicture.setImageResource(student.getPhotoId());
         linearLayoutStudentProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
                 studentProfilePicture.startAnimation(rotate);
             }
         });
-        TextView studentNameTextView = findViewById(R.id.main_student_name_text_view);
-        studentNameTextView.setText(String.format("%s %s", newStudent.getFirstName(), newStudent.getLastName()));
-        TextView studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
-        studentBirthDateTextView.setText(newStudent.getBirthDate());
-        TextView studentScoolName = findViewById(R.id.main_student_school_text_view);
-        studentScoolName.setText(newStudent.getSchool().getSchoolName());
+        TextView studentNameTextView = findViewById(R.id.bus_student_name_text_view);
+        studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
+        TextView studentBirthDateTextView = findViewById(R.id.bus_student_birth_date_text_view);
+        studentBirthDateTextView.setText(student.getBirthDate());
+        TextView studentScoolName = findViewById(R.id.bus_student_school_text_view);
+        studentScoolName.setText(student.getSchool().getSchoolName());
 
         studentProfilePicture.setClipToOutline(true);
 
@@ -72,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
 
                 if (itemId == R.id.fab_buss) { //Need to find a better solution than this if-statement
-                    Intent intent = new Intent(getApplicationContext(), BusCardActivity.class);
-                    intent.putExtra("student", newStudent);
-                    startActivity(intent);
+                    getFragment(BusCardFragment.newInstance());
                 }
                 if (itemId == R.id.fab_library) { //Need to find a better solution than this if-statement
                     getFragment(LibraryCardFragment.newInstance());
