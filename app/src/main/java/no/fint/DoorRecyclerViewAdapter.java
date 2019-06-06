@@ -53,7 +53,7 @@ public class DoorRecyclerViewAdapter extends RecyclerView.Adapter<DoorRecyclerVi
     public void onBindViewHolder(@NonNull final DoorViewHolder doorViewHolder, final int i) {
         doorViewHolder.doorName.setText(doors.get(i).getName());
         doorViewHolder.doorID.setText(doors.get(i).getDoorID());
-        doorViewHolder.doorPhoto.setImageResource(doors.get(i).getPictureOfDoor());
+        doorViewHolder.doorPhoto.setImageResource(doors.get(i).getPictureOfDoorID());
         doorViewHolder.openDoor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
             Intent logInIntent = new Intent(this, LogInActivity.class);
             startActivity(logInIntent);
         }
+
+        School school = new School("01", "Skien videregående skole");
+        Student newStudent = new Student("Anders", "Johansen", "15.10.2002", "123987", school, R.drawable.student_profile_picture);
+
         final ImageView studentProfilePicture = findViewById(R.id.front_page_student_picture);
+        studentProfilePicture.setImageResource(newStudent.getPhotoId());
         studentProfilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 studentProfilePicture.startAnimation(rotate);
             }
         });
+        TextView studentNameTextView = findViewById(R.id.main_student_name_text_view);
+        studentNameTextView.setText(String.format("%s %s", newStudent.getFirstName(), newStudent.getLastName()));
+        TextView studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
+        studentBirthDateTextView.setText(newStudent.getBirthDate());
+        TextView studentScoolName = findViewById(R.id.main_student_school_text_view);
+        studentScoolName.setText(newStudent.getSchool().getSchoolName());
 
         studentProfilePicture.setClipToOutline(true);
 
