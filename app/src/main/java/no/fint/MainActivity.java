@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
@@ -36,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         School school = new School("01", "Skien videregående skole");
         Student newStudent = new Student("Anders", "Johansen", "15.10.2002", "123987", school, R.drawable.student_profile_picture);
 
+        LinearLayout linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
         final ImageView studentProfilePicture = findViewById(R.id.front_page_student_picture);
         studentProfilePicture.setImageResource(newStudent.getPhotoId());
-        studentProfilePicture.setOnClickListener(new View.OnClickListener() {
+        linearLayoutStudentProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
