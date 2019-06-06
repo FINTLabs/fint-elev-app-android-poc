@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -16,6 +17,18 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
@@ -105,6 +118,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Student getStudentData(String brukernavn) {
+        String URL = "";
+        JsonArrayRequest hentBarnehager = new JsonArrayRequest(Request.Method.GET,
+                URL, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            System.out.println(response);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("ERROR", volleyError.toString());
+                volleyError.printStackTrace();
+                System.out.println(volleyError.getMessage());
+            }
+        });
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(hentBarnehager);
 
         return null;
     }
