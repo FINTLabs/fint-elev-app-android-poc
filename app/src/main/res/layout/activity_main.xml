@@ -33,17 +33,50 @@
             android:layout_margin="@dimen/standard_dimen"
             android:layout_weight="40"
             android:background="@drawable/picture_frame"
-            android:elevation="25dp"
+            android:elevation="5dp"
             android:scaleType="centerInside"
             android:src="@drawable/student_profile_picture" />
 
         <LinearLayout
+            android:id="@+id/student_bottom_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="10"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            android:layout_width="250dp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="GYLDIG ELEVBEVIS"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="16dp"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="Skoleåret 2019/2020"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="25"
             android:background="@drawable/text_frame"
-            android:elevation="10dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -51,57 +84,30 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/standard_dimen"
                 android:text="Anders Johansen" />
 
             <TextView
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/standard_dimen"
                 android:text="29.11.2001" />
 
             <TextView
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/standard_dimen"
                 android:text="Skien videregående skole" />
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:gravity="center"
-        android:orientation="vertical"/>
-        <LinearLayout
-            android:id="@+id/student_bottom_text"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="100dp"
             android:layout_height="0dp"
-            android:layout_weight="15"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/standard_dimen"
+            android:layout_weight="10"
+            android:src="@drawable/ic_vigo" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="GYLDIG ELEVBEVIS"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="Skoleåret 2019/2020"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
-        </LinearLayout>
     </LinearLayout>
 
     <io.github.kobakei.materialfabspeeddial.FabSpeedDial
@@ -109,9 +115,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
+        app:fab_fabBackgroundColor="@color/colorPrimary"
         app:fab_fabDrawable="@drawable/ic_menu_white_24dp"
         app:fab_fabRotationAngle="90"
         app:fab_menu="@menu/fab"
+        app:fab_miniFabBackgroundColor="@color/colorPrimary"
         app:fab_miniFabTextColor="@color/colorWhite"
         app:fab_touchGuardColor="@color/colorTransparent" />
 

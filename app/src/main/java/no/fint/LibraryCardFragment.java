@@ -34,10 +34,10 @@ public class LibraryCardFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_library_card, container, false);
-        linearLayoutTop = view.findViewById(R.id.library_card_fragment_top);
+        //linearLayoutTop = view.findViewById(R.id.library_card_fragment_top);
         linearLayoutBottom = view.findViewById(R.id.library_card_fragment_bottom);
         linearLayoutBottom.setOnClickListener(this);
-        linearLayoutTop.setOnClickListener(this);
+        //linearLayoutTop.setOnClickListener(this);
 
         TextView verifiedBusCardText = view.findViewById(R.id.library_card_verified_text);
         AnimatorSet glow = (AnimatorSet) AnimatorInflater.loadAnimator(view.getContext(), R.animator.verified_animation);
