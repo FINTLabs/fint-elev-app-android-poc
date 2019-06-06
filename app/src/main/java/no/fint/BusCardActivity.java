@@ -43,8 +43,6 @@ public class BusCardActivity extends AppCompatActivity {
         });
         TextView studentNameTextView = findViewById(R.id.bus_student_name_text_view);
         studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
-        TextView studentBirthDateTextView = findViewById(R.id.bus_student_birth_date_text_view);
-        studentBirthDateTextView.setText(student.getBirthDate());
         TextView studentScoolName = findViewById(R.id.bus_student_school_text_view);
         studentScoolName.setText(student.getSchool().getSchoolName());
 
