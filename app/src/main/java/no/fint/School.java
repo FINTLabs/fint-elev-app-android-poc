@@ -29,6 +29,10 @@ public class School implements Parcelable {
         }
     };
 
+    public School() {
+
+    }
+
     public String getSchoolId() {
         return schoolId;
     }
@@ -46,5 +50,13 @@ public class School implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.schoolId);
         dest.writeString(this.schoolName);
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 }

@@ -32,8 +32,9 @@ public class LogInActivity extends AppCompatActivity {
                     return;
                 }
                 Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
-                mainActivityIntent.putExtra("Brukernavn", userNameEditText.getText());
-                mainActivityIntent.putExtra("Password", passwordEditText.getText());
+                mainActivityIntent.putExtra("Brukernavn", userNameEditText.getText().toString());
+                System.out.println(userNameEditText.getText().toString());
+                mainActivityIntent.putExtra("Password", passwordEditText.getText().toString());
                 SharedPreferences.Editor editor = getSharedPreferences(FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE).edit();
                 editor.putBoolean(FintStudentAppSharedPreferences.isLoggedIn, true);
                 editor.apply();

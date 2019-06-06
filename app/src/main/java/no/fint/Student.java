@@ -41,6 +41,10 @@ public class Student implements Parcelable {
         }
     };
 
+    public Student() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -78,5 +82,29 @@ public class Student implements Parcelable {
         dest.writeString(this.studentId);
         dest.writeParcelable(this.school, flags);
         dest.writeInt(this.photoId);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 }
