@@ -13,6 +13,7 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <!--
         <LinearLayout
             android:id="@+id/library_card_fragment_top"
             android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             android:layout_weight="30"
             android:orientation="horizontal">
         </LinearLayout>
-
+-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -33,19 +34,21 @@
             android:id="@+id/library_card_fragment_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="30"
+            android:layout_weight="20"
             android:orientation="horizontal"
             android:gravity="center">
 
 
             <TextView
                 android:id="@+id/library_card_verified_text"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="GODKJENT BIBLIOTEKSKORT"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
-                android:padding="@dimen/bus_card_verified_dimen"/>
+                android:padding="@dimen/bus_card_verified_dimen"
+                android:gravity="center"
+                />
 
         </LinearLayout>
     </LinearLayout>

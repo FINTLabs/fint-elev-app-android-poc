@@ -33,11 +33,12 @@
             android:layout_margin="@dimen/standard_dimen"
             android:layout_weight="40"
             android:background="@drawable/picture_frame"
-            android:elevation="25dp"
+            android:elevation="5dp"
             android:scaleType="centerInside"
             android:src="@drawable/student_profile_picture" />
 
         <LinearLayout
+            android:id="@+id/student_bottom_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -54,6 +55,7 @@
                 android:text="GYLDIG ELEVBEVIS"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
+                android:textSize="16dp"
 
                 />
 
@@ -64,7 +66,9 @@
                 android:gravity="center"
                 android:text="Skoleåret 2019/2020"
                 android:textColor="@color/colorWhite"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="20dp"
+                />
 
         </LinearLayout>
 
