@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     TextView studentBirthDateTextView;
     TextView studentScoolName;
     ImageView studentProfilePicture;
+    Response.ErrorListener errorListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         student.setPhotoId(R.drawable.student_profile_picture);
         if (getIntent().hasExtra("Brukernavn")) {
             String username = getIntent().getExtras().getString("Brukernavn");
+            errorListener = getErrorListener();
             queue.add(getStudentData(username)).setTag("studentData");
             queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JsonObjectRequest>() {
                 @Override
@@ -177,13 +179,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println(response);
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.e("ERROR", volleyError.toString());
-                volleyError.printStackTrace();
-            }
-        });
+                }, errorListener);
     }
 
     private JsonObjectRequest searchForPersonInformation(String personHREF) {
@@ -205,13 +201,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println(response);
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.e("ERROR", volleyError.toString());
-                volleyError.printStackTrace();
-            }
-        });
+                }, errorListener);
          /*queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
             public void onRequestFinished(Request<Object> r) {
@@ -233,13 +223,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println(response);
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.e("ERROR", volleyError.toString());
-                volleyError.printStackTrace();
-            }
-        });
+                }, errorListener);
     }
 
     private JsonObjectRequest searchForSchoolInfo(String schoolHREF) {
@@ -262,13 +246,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println(response);
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.e("ERROR", volleyError.toString());
-                volleyError.printStackTrace();
-            }
-        });
+                }, errorListener);
         /*person p;
         navn = JsonPath.get(p, "$._links.elevforhold[*].href");*/
     }
@@ -302,5 +280,15 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction();
         fragmentTransaction.add(R.id.fragment_container,
                 fragment).addToBackStack(null).commit();
+    }
+
+    private Response.ErrorListener getErrorListener() {
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("ERROR", volleyError.toString());
+                volleyError.printStackTrace();
+            }
+        };
     }
 }
