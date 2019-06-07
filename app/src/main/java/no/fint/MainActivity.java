@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.jayway.jsonpath.JsonPath;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -165,18 +166,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONObject studentNumberJsonObject = response.getJSONObject("elevnummer");
-                            String identifierValue = studentNumberJsonObject.getString("identifikatorverdi");
+                            String json = response.toString();
+                            String identifierValue = JsonPath.read(json, "$.feidenavn.identifikatorverdi");
                             student.setStudentId(identifierValue);
                             editor.putString(FintStudentAppSharedPreferences.studentID, identifierValue);
-                            JSONObject links = response.getJSONObject("_links");
-                            JSONArray personLinkArray = links.getJSONArray("person");
-                            JSONArray studentRelationLinkArray = links.getJSONArray("elevforhold");
-                            JSONObject personHREFObject = personLinkArray.getJSONObject(0);
-                            JSONObject personStudentRelationObject = studentRelationLinkArray.getJSONObject(0);
-                            personHREF = personHREFObject.getString("href");
-                            studentRelationHREF = personStudentRelationObject.getString("href");
-                        } catch (JSONException e) {
+                            personHREF = JsonPath.read(json, "$._links.person[0].href");
+                            studentRelationHREF = JsonPath.read(json, "$._links.elevforhold[0].href");
+                        } catch (Exception e) { //kan vi bruke JsonPathException??
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -186,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
-                System.out.println(volleyError.getMessage());
             }
         });
     }
@@ -198,15 +193,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONObject nameObject = response.getJSONObject("navn");
-
-                            student.setFirstName(nameObject.getString("fornavn"));
-                            student.setLastName(nameObject.getString("etternavn"));
-                            student.setBirthDate(response.getString("fodselsdato"));
-                            editor.putString(FintStudentAppSharedPreferences.studentFirstName, nameObject.getString("fornavn"));
-                            editor.putString(FintStudentAppSharedPreferences.studentLastName, nameObject.getString("etternavn"));
-                            editor.putString(FintStudentAppSharedPreferences.studentBirthDate, response.getString("fodselsdato"));
-                        } catch (JSONException e) {
+                            String json = response.toString();
+                            student.setFirstName((String)JsonPath.read(json, "$.navn.fornavn"));
+                            student.setLastName((String)JsonPath.read(json, "$.navn.etternavn"));
+                            student.setBirthDate((String)JsonPath.read(json, "$.fodselsdato"));
+                            editor.putString(FintStudentAppSharedPreferences.studentFirstName, student.getFirstName());
+                            editor.putString(FintStudentAppSharedPreferences.studentLastName, student.getLastName());
+                            editor.putString(FintStudentAppSharedPreferences.studentBirthDate, student.getBirthDate());
+                        } catch (Exception e) { //kan vi bruke JsonPathException??
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -216,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
-                System.out.println(volleyError.getMessage());
             }
         });
          /*queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
@@ -234,11 +227,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONObject links = response.getJSONObject("_links");
-                            JSONArray schoolJSONArray = links.getJSONArray("skole");
-                            JSONObject schoolJSONObject = schoolJSONArray.getJSONObject(0);
-                            schoolHREF = schoolJSONObject.getString("href");
-                        } catch (JSONException e) {
+                            schoolHREF = JsonPath.read(response.toString(), "$._links.skole[0].href");
+                        } catch (Exception e) { //kan vi bruke JsonPathException??
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -248,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
-                System.out.println(volleyError.getMessage());
             }
         });
     }
@@ -260,15 +249,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            school.setSchoolName(response.getString("navn"));
-                            editor.putString(FintStudentAppSharedPreferences.studentScoolName, response.getString("navn"));
-                            JSONObject schoolNumberObject = response.getJSONObject("skolenummer");
-                            school.setSchoolId(schoolNumberObject.getString("identifikatorverdi"));
-                            editor.putString(FintStudentAppSharedPreferences.studentScoolID, schoolNumberObject.getString("identifikatorverdi"));
+                            String json = response.toString();
+                            school.setSchoolName((String)JsonPath.read(json, "$.navn"));
+                            editor.putString(FintStudentAppSharedPreferences.studentScoolName, school.getSchoolName());
+                            school.setSchoolId((String)JsonPath.read(json, "$.skolenummer.identifikatorverdi"));
+                            editor.putString(FintStudentAppSharedPreferences.studentScoolID, school.getSchoolId());
                             student.setSchool(school);
                             editor.apply();
                             drawUpStudent(student);
-                        } catch (JSONException e) {
+                        } catch (Exception e) { //kan vi bruke JsonPathException??
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -278,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
-                System.out.println(volleyError.getMessage());
             }
         });
         /*person p;
