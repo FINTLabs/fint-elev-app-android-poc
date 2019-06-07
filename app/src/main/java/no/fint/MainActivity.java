@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
     School school;
     SharedPreferences mainActivitySharedPreferences;
     SharedPreferences.Editor editor;
+    RequestQueue queue;
+    String personHREF;
+    String studentRelationHREF;
+    String schoolHREF;
+    boolean isPersonDataReceived;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         editor = mainActivitySharedPreferences.edit();
         student = new Student();
         school = new School();
+        queue = Volley.newRequestQueue(this);
         //Starts LogInActivity is not logged inn
         //hard coded to be true, but set to false to start intent
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
@@ -54,7 +60,28 @@ public class MainActivity extends AppCompatActivity {
         student.setPhotoId(R.drawable.student_profile_picture);
         if (getIntent().hasExtra("Brukernavn")){
             String username = getIntent().getExtras().getString("Brukernavn");
-            getStudentData(username);
+            queue.add(getStudentData(username)).setTag("studentData");
+            queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JsonObjectRequest>() {
+                @Override
+                public void onRequestFinished(Request<JsonObjectRequest> request) {
+                    if (request.getTag().equals("studentData")){
+                        queue.add(searchForPersonInformation(personHREF)).setTag("personData");
+                        queue.add(searchForElevForholdInformation(studentRelationHREF)).setTag("studentRelationData");
+                    }
+                    if (request.getTag().equals("studentRelationData")){
+                        queue.add(searchForSchoolInfo(schoolHREF)).setTag("schoolData");
+                    }
+                    if (request.getTag().equals("personData")){
+                        isPersonDataReceived = true;
+                    }
+                    if (request.getTag().equals("schoolData")){
+                        while(!isPersonDataReceived){
+                            System.out.println("waiting....");
+                        }
+                        drawUpStudent(student);
+                    }
+                }
+            });
         }
         else {
             student.setFirstName(mainActivitySharedPreferences
@@ -123,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // example brukernavn: leonahansen@sundetvgs.haugfk.no
-    private void getStudentData(String username) {
+    private JsonObjectRequest getStudentData(String username) {
         String URL = String.format("%s%s", "https://play-with-fint.felleskomponent.no/utdanning/elev/elev/feidenavn/", username);
-        JsonObjectRequest getFeideInfo = new JsonObjectRequest(Request.Method.GET,
+        return new JsonObjectRequest(Request.Method.GET,
                 URL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -140,9 +167,8 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray studentRelationLinkArray = links.getJSONArray("elevforhold");
                             JSONObject personHREFObject = personLinkArray.getJSONObject(0);
                             JSONObject personStudentRelationObject = studentRelationLinkArray.getJSONObject(0);
-                            String personHREF = personHREFObject.getString("href");
-                            String studentRelationHREF = personStudentRelationObject.getString("href");
-                            searchForPersonInformation(personHREF, studentRelationHREF);
+                            personHREF = personHREFObject.getString("href");
+                            studentRelationHREF = personStudentRelationObject.getString("href");
                         } catch (JSONException e) {
                             e.printStackTrace();
                             System.out.println(response);
@@ -156,12 +182,10 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(volleyError.getMessage());
             }
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(getFeideInfo);
     }
 
-    private void searchForPersonInformation(String personHREF, final String studentRelationHREF) {
-        JsonObjectRequest getPersonInfo = new JsonObjectRequest(Request.Method.GET,
+    private JsonObjectRequest searchForPersonInformation(String personHREF) {
+        return new JsonObjectRequest(Request.Method.GET,
                 personHREF, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -175,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString(FintStudentAppSharedPreferences.studentFirstName, nameObject.getString("fornavn"));
                             editor.putString(FintStudentAppSharedPreferences.studentLastName, nameObject.getString("etternavn"));
                             editor.putString(FintStudentAppSharedPreferences.studentBirthDate, response.getString("fodselsdato"));
-                            searchForElevForholdInformation(studentRelationHREF);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             System.out.println(response);
@@ -189,12 +212,16 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(volleyError.getMessage());
             }
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(getPersonInfo);
+         /*queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> r) {
+                System.out.println("r = " + r);
+            }
+        });*/
     }
 
-    private void searchForElevForholdInformation(String studentRelationHREF) {
-        JsonObjectRequest getStudentRelationInfo = new JsonObjectRequest(Request.Method.GET,
+    private JsonObjectRequest searchForElevForholdInformation(String studentRelationHREF) {
+        return new JsonObjectRequest(Request.Method.GET,
                 studentRelationHREF, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -203,8 +230,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject links = response.getJSONObject("_links");
                             JSONArray schoolJSONArray = links.getJSONArray("skole");
                             JSONObject schoolJSONObject = schoolJSONArray.getJSONObject(0);
-                            searchForSchoolInfo(schoolJSONObject.getString("href"));
-
+                            schoolHREF = schoolJSONObject.getString("href");
                         } catch (JSONException e) {
                             e.printStackTrace();
                             System.out.println(response);
@@ -218,12 +244,10 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(volleyError.getMessage());
             }
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(getStudentRelationInfo);
     }
 
-    private void searchForSchoolInfo(String schoolHREF) {
-        JsonObjectRequest getElevForholdInfo = new JsonObjectRequest(Request.Method.GET,
+    private JsonObjectRequest searchForSchoolInfo(String schoolHREF) {
+        return new JsonObjectRequest(Request.Method.GET,
                 schoolHREF, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -250,8 +274,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(volleyError.getMessage());
             }
         });
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(getElevForholdInfo);
+        /*person p;
+        navn = JsonPath.get(p, "$._links.elevforhold[*].href");*/
     }
 
     private void drawUpStudent(Student student) {
