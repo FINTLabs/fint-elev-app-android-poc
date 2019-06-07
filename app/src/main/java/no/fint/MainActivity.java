@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
     String personHREF;
     String studentRelationHREF;
     String schoolHREF;
-    boolean isPersonDataReceived;
+    boolean isPersonDataReceived, isSchoolDataReceived;
+    TextView studentNameTextView;
+    TextView studentBirthDateTextView;
+    TextView studentScoolName;
+    ImageView studentProfilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         student = new Student();
         school = new School();
         queue = Volley.newRequestQueue(this);
+        studentNameTextView = findViewById(R.id.main_student_name_text_view);
+        studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
+        studentScoolName = findViewById(R.id.main_student_school_text_view);
+        studentProfilePicture = findViewById(R.id.front_page_student_picture);
         //Starts LogInActivity is not logged inn
         //hard coded to be true, but set to false to start intent
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
@@ -58,32 +66,30 @@ public class MainActivity extends AppCompatActivity {
             startActivity(logInIntent);
         }
         student.setPhotoId(R.drawable.student_profile_picture);
-        if (getIntent().hasExtra("Brukernavn")){
+        if (getIntent().hasExtra("Brukernavn")) {
             String username = getIntent().getExtras().getString("Brukernavn");
             queue.add(getStudentData(username)).setTag("studentData");
             queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JsonObjectRequest>() {
                 @Override
                 public void onRequestFinished(Request<JsonObjectRequest> request) {
-                    if (request.getTag().equals("studentData")){
+                    if (request.getTag().equals("studentData")) {
                         queue.add(searchForPersonInformation(personHREF)).setTag("personData");
                         queue.add(searchForElevForholdInformation(studentRelationHREF)).setTag("studentRelationData");
                     }
-                    if (request.getTag().equals("studentRelationData")){
+                    if (request.getTag().equals("studentRelationData")) {
                         queue.add(searchForSchoolInfo(schoolHREF)).setTag("schoolData");
                     }
-                    if (request.getTag().equals("personData")){
+                    if (request.getTag().equals("personData")) {
                         isPersonDataReceived = true;
                     }
-                    if (request.getTag().equals("schoolData")){
-                        while(!isPersonDataReceived){
-                            System.out.println("waiting....");
-                        }
-                        drawUpStudent(student);
+                    if (request.getTag().equals("schoolData")) {
+                        isSchoolDataReceived = true;
                     }
+                    if (isPersonDataReceived || isSchoolDataReceived)
+                        drawUpStudent(student);
                 }
             });
-        }
-        else {
+        } else {
             student.setFirstName(mainActivitySharedPreferences
                     .getString(FintStudentAppSharedPreferences.studentFirstName
                             , "Ingen fornavn"));
@@ -103,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     .getString(FintStudentAppSharedPreferences.studentScoolName
                             , "Ingen skolenavn"));
             student.setSchool(school);
+            isSchoolDataReceived = isPersonDataReceived = true;
             drawUpStudent(student);
         }
 
@@ -279,16 +286,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void drawUpStudent(Student student) {
-        TextView studentNameTextView = findViewById(R.id.main_student_name_text_view);
-        studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
-        TextView studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
-        studentBirthDateTextView.setText(student.getBirthDate());
-        TextView studentScoolName = findViewById(R.id.main_student_school_text_view);
-        studentScoolName.setText(student.getSchool().getSchoolName());
-
+        if (isPersonDataReceived){
+            studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
+            studentBirthDateTextView.setText(student.getBirthDate());
+            studentProfilePicture.setImageResource(student.getPhotoId());
+        }
+        if (isSchoolDataReceived){
+            studentScoolName.setText(student.getSchool().getSchoolName());
+        }
         LinearLayout linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
-        final ImageView studentProfilePicture = findViewById(R.id.front_page_student_picture);
-        studentProfilePicture.setImageResource(student.getPhotoId());
         linearLayoutStudentProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
