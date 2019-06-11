@@ -1,0 +1,18 @@
+query studentQuery($feideNavn: String!){
+    student(feideNavn: $feideNavn){
+        elev(feidenavn: $feideNavn) {
+            person {
+                navn {
+                    fornavn
+                    etternavn
+                }
+                fodselsdato
+            }
+            elevforhold {
+                skole {
+                    organisasjonsnavn
+                }
+            }
+        }
+    }
+}
