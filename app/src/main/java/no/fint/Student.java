@@ -1,8 +1,9 @@
 package no.fint;
 
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Student {
+public class Student implements Parcelable {
     private String firstName;
     private String lastName;
     private String birthDate;
@@ -17,6 +18,31 @@ public class Student {
         this.studentId = studentId;
         this.school = school;
         this.photoId = photoId;
+    }
+
+    protected Student(Parcel in) {
+        firstName = in.readString();
+        lastName = in.readString();
+        birthDate = in.readString();
+        studentId = in.readString();
+        school = in.readParcelable(School.class.getClassLoader());
+        photoId = in.readInt();
+    }
+
+    public static final Creator<Student> CREATOR = new Creator<Student>() {
+        @Override
+        public Student createFromParcel(Parcel in) {
+            return new Student(in);
+        }
+
+        @Override
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
+
+    public Student() {
+
     }
 
     public String getFirstName() {
@@ -41,5 +67,44 @@ public class Student {
 
     public int getPhotoId() {
         return photoId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.firstName);
+        dest.writeString(this.lastName);
+        dest.writeString(this.birthDate);
+        dest.writeString(this.studentId);
+        dest.writeParcelable(this.school, flags);
+        dest.writeInt(this.photoId);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 }

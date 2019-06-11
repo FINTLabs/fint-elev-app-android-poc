@@ -16,18 +16,18 @@
 
 
         <ImageView
-            android:id="@+id/main_activity_school_title_logo"
+            android:id="@+id/bus_activity_school_title_logo"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:layout_marginTop="@dimen/standard_dimen"
             android:layout_weight="17"
-            android:src="@drawable/telemark_fylkeskommune_logo" />
+            android:src="@drawable/farte_logo" />
 
 
         <ImageView
-            android:id="@+id/front_page_student_picture"
+            android:id="@+id/bus_page_student_picture"
             android:layout_width="250dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -38,11 +38,11 @@
             android:scaleType="centerInside" />
 
         <LinearLayout
-            android:id="@+id/student_proof_text_linear_layout"
+            android:id="@+id/bus_proof_text_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="10"
+            android:layout_weight="12"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:orientation="vertical">
@@ -52,11 +52,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                android:text="GYLDIG ELEVBEVIS"
+                android:text="GYLDIG BUSSKORT"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:textSize="16dp"
-
                 />
 
             <TextView
@@ -75,26 +74,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="23"
+            android:layout_weight="21"
             android:background="@drawable/text_frame"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/main_student_name_text_view"
+                android:id="@+id/bus_student_name_text_view"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"/>
 
             <TextView
-                android:id="@+id/main_student_birth_date_text_view"
+                android:id="@+id/bus_student_school_text_view"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/main_student_school_text_view"
-                style="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
