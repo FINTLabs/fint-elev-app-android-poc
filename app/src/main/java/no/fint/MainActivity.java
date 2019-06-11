@@ -25,10 +25,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.JsonPathException;
+import com.jayway.jsonpath.PathNotFoundException;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
@@ -151,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                             .remove(FintStudentAppSharedPreferences.isLoggedIn)
                             .apply()
                     ;
-                    getApplication().startActivity(
+                    getApplicationContext().startActivity(
                             new Intent(getApplicationContext(), LogInActivity.class)
                     );
                 }
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString(FintStudentAppSharedPreferences.studentID, identifierValue);
                             personHREF = JsonPath.read(json, "$._links.person[0].href");
                             studentRelationHREF = JsonPath.read(json, "$._links.elevforhold[0].href");
-                        } catch (Exception e) { //kan vi bruke JsonPathException??
+                        } catch (PathNotFoundException e) { //kan vi bruke JsonPathException??
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -190,9 +193,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String json = response.toString();
-                            student.setFirstName((String)JsonPath.read(json, "$.navn.fornavn"));
-                            student.setLastName((String)JsonPath.read(json, "$.navn.etternavn"));
-                            student.setBirthDate((String)JsonPath.read(json, "$.fodselsdato"));
+                            student.setFirstName(JsonPath.read(json, "$.navn.fornavn").toString());
+                            student.setLastName(JsonPath.read(json, "$.navn.etternavn").toString());
+
+                            student.setBirthDate(JsonPath.read(json, "$.fodselsdato").toString());
                             editor.putString(FintStudentAppSharedPreferences.studentFirstName, student.getFirstName());
                             editor.putString(FintStudentAppSharedPreferences.studentLastName, student.getLastName());
                             editor.putString(FintStudentAppSharedPreferences.studentBirthDate, student.getBirthDate());
@@ -234,9 +238,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String json = response.toString();
-                            school.setSchoolName((String)JsonPath.read(json, "$.navn"));
+                            school.setSchoolName(JsonPath.read(json, "$.navn").toString());
                             editor.putString(FintStudentAppSharedPreferences.studentScoolName, school.getSchoolName());
-                            school.setSchoolId((String)JsonPath.read(json, "$.skolenummer.identifikatorverdi"));
+                            school.setSchoolId(JsonPath.read(json, "$.skolenummer.identifikatorverdi").toString());
                             editor.putString(FintStudentAppSharedPreferences.studentScoolID, school.getSchoolId());
                             student.setSchool(school);
                             editor.apply();
