@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Student implements Parcelable {
+    private String userName;
     private String firstName;
     private String lastName;
     private String birthDate;
@@ -106,5 +107,13 @@ public class Student implements Parcelable {
 
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

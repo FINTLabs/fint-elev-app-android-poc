@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,13 +27,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.JsonPathException;
 import com.jayway.jsonpath.PathNotFoundException;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
@@ -47,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
     boolean isPersonDataReceived, isSchoolDataReceived;
     TextView studentNameTextView;
     TextView studentBirthDateTextView;
-    TextView studentScoolName;
+    TextView studentScoolNameTextView;
     ImageView studentProfilePicture;
     Response.ErrorListener errorListener;
+    LinearLayout linearLayoutStudentProof;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +58,27 @@ public class MainActivity extends AppCompatActivity {
         editor = mainActivitySharedPreferences.edit();
         student = new Student();
         school = new School();
+        student.setSchool(school);
         queue = Volley.newRequestQueue(this);
         studentNameTextView = findViewById(R.id.main_student_name_text_view);
         studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
-        studentScoolName = findViewById(R.id.main_student_school_text_view);
+        studentScoolNameTextView = findViewById(R.id.main_student_school_text_view);
         studentProfilePicture = findViewById(R.id.front_page_student_picture);
-        //Starts LogInActivity is not logged inn
-        //hard coded to be true, but set to false to start intent
+        linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
             Intent logInIntent = new Intent(this, LogInActivity.class);
             startActivity(logInIntent);
         }
-        student.setPhotoId(R.drawable.student_profile_picture);
-        if (getIntent().hasExtra("Brukernavn")) {
-            String username = getIntent().getExtras().getString("Brukernavn");
+        else{
+            String username = (getIntent().hasExtra("Brukernavn")) ? getIntent().getExtras().getString("Brukernavn") : mainActivitySharedPreferences.getString(FintStudentAppSharedPreferences.username,"no username");
+            if (username.equals("no username")){
+                editor.putBoolean(FintStudentAppSharedPreferences.isLoggedIn, false);
+                editor.apply();
+                Intent logInIntent = new Intent(this, LogInActivity.class);
+                startActivity(logInIntent);
+            }
+            editor.putString(FintStudentAppSharedPreferences.username, username);
+            editor.apply();
             errorListener = getErrorListener();
             queue.add(getStudentData(username)).setTag("studentData");
             queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JsonObjectRequest>() {
@@ -95,38 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         drawUpStudent(student);
                 }
             });
-        } else {
-            student.setFirstName(mainActivitySharedPreferences
-                    .getString(FintStudentAppSharedPreferences.studentFirstName
-                            , "Ingen fornavn"));
-            student.setLastName(mainActivitySharedPreferences
-                    .getString(FintStudentAppSharedPreferences.studentLastName
-                            , "Ingen etternavn"));
-            student.setStudentId(mainActivitySharedPreferences
-                    .getString(FintStudentAppSharedPreferences.studentID
-                            , "Ingen ID"));
-            student.setBirthDate(mainActivitySharedPreferences
-                    .getString(FintStudentAppSharedPreferences.studentBirthDate
-                            , "Ingen fødselsdato"));
-            school.setSchoolId(mainActivitySharedPreferences
-                    .getString(FintStudentAppSharedPreferences.studentScoolID
-                            , "Ingen skoleID"));
-            school.setSchoolName(mainActivitySharedPreferences
-                    .getString(FintStudentAppSharedPreferences.studentScoolName
-                            , "Ingen skolenavn"));
-            student.setSchool(school);
-            isSchoolDataReceived = isPersonDataReceived = true;
-            drawUpStudent(student);
         }
-
-
-
-        /*
-        LinearLayout linearLayoutBottomFrontPage = findViewById(R.id.student_bottom_text);
-        AnimatorSet glow = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.glow_animation);
-        glow.setTarget(linearLayoutBottomFrontPage);
-        glow.start();
-        */
 
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
 
@@ -177,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString(FintStudentAppSharedPreferences.studentID, identifierValue);
                             personHREF = JsonPath.read(json, "$._links.person[0].href");
                             studentRelationHREF = JsonPath.read(json, "$._links.elevforhold[0].href");
-                        } catch (PathNotFoundException e) { //kan vi bruke JsonPathException??
+                        } catch (PathNotFoundException e) {
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -200,18 +175,12 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString(FintStudentAppSharedPreferences.studentFirstName, student.getFirstName());
                             editor.putString(FintStudentAppSharedPreferences.studentLastName, student.getLastName());
                             editor.putString(FintStudentAppSharedPreferences.studentBirthDate, student.getBirthDate());
-                        } catch (Exception e) { //kan vi bruke JsonPathException??
+                        } catch (PathNotFoundException e) {
                             e.printStackTrace();
                             System.out.println(response);
                         }
                     }
                 }, errorListener);
-         /*queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-            @Override
-            public void onRequestFinished(Request<Object> r) {
-                System.out.println("r = " + r);
-            }
-        });*/
     }
 
     private JsonObjectRequest searchForElevForholdInformation(String studentRelationHREF) {
@@ -222,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             schoolHREF = JsonPath.read(response.toString(), "$._links.skole[0].href");
-                        } catch (Exception e) { //kan vi bruke JsonPathException??
+                        } catch (PathNotFoundException e) {
                             e.printStackTrace();
                             System.out.println(response);
                         }
@@ -245,26 +214,26 @@ public class MainActivity extends AppCompatActivity {
                             student.setSchool(school);
                             editor.apply();
                             drawUpStudent(student);
-                        } catch (Exception e) { //kan vi bruke JsonPathException??
+                        } catch (PathNotFoundException e) {
                             e.printStackTrace();
                             System.out.println(response);
                         }
                     }
                 }, errorListener);
-        /*person p;
-        navn = JsonPath.get(p, "$._links.elevforhold[*].href");*/
     }
 
-    private void drawUpStudent(Student student) {
-        if (isPersonDataReceived){
-            studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
-            studentBirthDateTextView.setText(student.getBirthDate());
-            studentProfilePicture.setImageResource(student.getPhotoId());
+    private void drawUpStudent(Student studentToDraw) {
+
+        studentToDraw.setPhotoId(R.drawable.student_profile_picture);
+        if (isPersonDataReceived) {
+            studentNameTextView.setText(String.format("%s %s", studentToDraw.getFirstName(), studentToDraw.getLastName()));
+            studentBirthDateTextView.setText(studentToDraw.getBirthDate());
+            studentProfilePicture.setImageResource(studentToDraw.getPhotoId());
         }
-        if (isSchoolDataReceived){
-            studentScoolName.setText(student.getSchool().getSchoolName());
+        if (isSchoolDataReceived) {
+            studentScoolNameTextView.setText(studentToDraw.getSchool().getSchoolName());
         }
-        LinearLayout linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
+
         linearLayoutStudentProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -290,6 +259,16 @@ public class MainActivity extends AppCompatActivity {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                queue.stop();
+                TextView errorTextView = findViewById(R.id.text_view_student_proof_main_activity_top);
+                errorTextView.setText("IKKE GYLDIG");
+                errorTextView = findViewById(R.id.text_view_student_proof_main_activity_bottom);
+                errorTextView.setText("Elevbevis");
+                linearLayoutStudentProof.setBackgroundColor(getColor(R.color.colorError));
+
+                FrameLayout fl = findViewById(R.id.main_activity_frame_layout);
+                Snackbar.make(fl ,"Noe gikk galt :'(", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
             }
