@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -263,6 +265,10 @@ public class MainActivity extends AppCompatActivity {
                 errorTextView = findViewById(R.id.text_view_student_proof_main_activity_bottom);
                 errorTextView.setText("Elevbevis");
                 linearLayoutStudentProof.setBackgroundColor(getColor(R.color.colorError));
+
+                FrameLayout fl = findViewById(R.id.main_activity_frame_layout);
+                Snackbar.make(fl ,"Noe gikk galt :'(", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
             }
