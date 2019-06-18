@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        if (getIntent().hasExtra("openedDoor")){
+            FrameLayout fl = findViewById(R.id.main_activity_frame_layout);
+            Snackbar.make(fl ,String.format("%s er åpnet!",getIntent().getExtras().getString("openedDoor")), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+        }
 
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
 
@@ -110,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
 
                 if (itemId == R.id.fab_buss) {
-                    Intent intent = new Intent(getApplicationContext(), BusCardActivity.class);
+                    Intent intent = new Intent(MainActivity.this, BusCardActivity.class);
                     intent.putExtra("student", student);
                     startActivity(intent);
                 }
@@ -118,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
                     getFragment(LibraryCardFragment.newInstance());
                 }
                 if (itemId == R.id.fab_open_doors) {
-                    getApplication().startActivity(
-                            new Intent(getApplicationContext(), UnlockDoorsListActivity.class)
+                    MainActivity.this.startActivity(
+                            new Intent(MainActivity.this, UnlockDoorsListActivity.class)
                     );
                 }
                 if (itemId == R.id.fab_log_out) {
@@ -129,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
                             .remove(FintStudentAppSharedPreferences.isLoggedIn)
                             .apply()
                     ;
-                    getApplicationContext().startActivity(
-                            new Intent(getApplicationContext(), LogInActivity.class)
+                    MainActivity.this.startActivity(
+                            new Intent(MainActivity.this, LogInActivity.class)
                     );
                 }
             }
