@@ -3,13 +3,13 @@ package no.fint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @Data
 @Builder
-@NoArgsConstructor
 public class School implements Parcelable {
     private String schoolId;
     private String schoolName;
@@ -30,6 +30,10 @@ public class School implements Parcelable {
             return new School[size];
         }
     };
+
+    public School() {
+
+    }
 
     @Override
     public int describeContents() {
