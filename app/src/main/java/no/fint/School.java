@@ -3,14 +3,16 @@ package no.fint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
 public class School implements Parcelable {
     private String schoolId;
     private String schoolName;
-
-    public School(String schoolId, String schoolName) {
-        this.schoolId = schoolId;
-        this.schoolName = schoolName;
-    }
 
     protected School(Parcel in) {
         schoolId = in.readString();
@@ -29,18 +31,6 @@ public class School implements Parcelable {
         }
     };
 
-    public School() {
-
-    }
-
-    public String getSchoolId() {
-        return schoolId;
-    }
-
-    public String getSchoolName() {
-        return schoolName;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -50,13 +40,5 @@ public class School implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.schoolId);
         dest.writeString(this.schoolName);
-    }
-
-    public void setSchoolId(String schoolId) {
-        this.schoolId = schoolId;
-    }
-
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
     }
 }

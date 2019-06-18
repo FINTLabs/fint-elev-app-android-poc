@@ -23,9 +23,9 @@ public class UnlockDoorsListActivity extends AppCompatActivity {
 
     private ArrayList<Door> createDoors() {
         ArrayList<Door> doors = new ArrayList<Door>();
-        doors.add(new Door("Hovedinngang", "1001", R.drawable.school_main_door));
-        doors.add(new Door("Bilbliotekdør", "1002", R.drawable.library_door));
-        doors.add(new Door("Kantinedør", "1003", R.drawable.cafeteria_door));
+        doors.add(Door.builder().name("Hovedinngang").doorID("1001").pictureOfDoorID(R.drawable.school_main_door).build());
+        doors.add(Door.builder().name("Bilbliotekdør").doorID("1002").pictureOfDoorID(R.drawable.library_door).build());
+        doors.add(Door.builder().name("Kantinedør").doorID("1003").pictureOfDoorID(R.drawable.cafeteria_door).build());
         return doors;
     }
 }
