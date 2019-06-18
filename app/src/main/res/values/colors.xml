@@ -8,4 +8,5 @@
     <color name="colorOpacity">#00000000</color>
     <color name="colorVigoBackground">#1F4F59</color>
     <color name="colorVigoGreen">#8DC63F</color>
+    <color name="colorError">#B71C1C</color>
 </resources>
