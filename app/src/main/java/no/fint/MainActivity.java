@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -19,7 +20,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,6 +30,13 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 
 import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
@@ -231,7 +238,18 @@ public class MainActivity extends AppCompatActivity {
         studentToDraw.setPhotoId(R.drawable.student_profile_picture);
         if (isPersonDataReceived) {
             studentNameTextView.setText(String.format("%s %s", studentToDraw.getFirstName(), studentToDraw.getLastName()));
-            studentBirthDateTextView.setText(studentToDraw.getBirthDate());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            String birthDay ="";
+            try {
+                Date date = sdf.parse(studentToDraw.getBirthDate());
+                birthDay = String.format( "%s-%s-%s",
+                        DateFormat.format("dd", date),
+                        DateFormat.format("MM", date),
+                        DateFormat.format("yyyy", date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            studentBirthDateTextView.setText(birthDay);
             studentProfilePicture.setImageResource(studentToDraw.getPhotoId());
         }
         if (isSchoolDataReceived) {
