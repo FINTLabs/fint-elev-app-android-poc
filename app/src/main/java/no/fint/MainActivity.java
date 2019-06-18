@@ -2,7 +2,6 @@ package no.fint;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -259,6 +258,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 queue.stop();
+                TextView errorTextView = findViewById(R.id.text_view_student_proof_main_activity_top);
+                errorTextView.setText("IKKE GYLDIG");
+                errorTextView = findViewById(R.id.text_view_student_proof_main_activity_bottom);
+                errorTextView.setText("Elevbevis");
                 linearLayoutStudentProof.setBackgroundColor(getColor(R.color.colorError));
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
