@@ -48,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
     String studentRelationHREF;
     String schoolHREF;
     boolean isPersonDataReceived, isSchoolDataReceived;
-    TextView studentNameTextView;
+
     TextView studentBirthDateTextView;
-    TextView studentScoolNameTextView;
-    ImageView studentProfilePicture;
     Response.ErrorListener errorListener;
     LinearLayout linearLayoutStudentProof;
 
@@ -65,10 +63,7 @@ public class MainActivity extends AppCompatActivity {
         school = new School();
         student.setSchool(school);
         queue = Volley.newRequestQueue(this);
-        studentNameTextView = findViewById(R.id.main_student_name_text_view);
         studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
-        studentScoolNameTextView = findViewById(R.id.main_student_school_text_view);
-        studentProfilePicture = findViewById(R.id.front_page_student_picture);
         linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
             finishAffinity();
@@ -135,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE)
                             .edit()
                             .remove(FintStudentAppSharedPreferences.isLoggedIn)
-                            .apply()
-                    ;
+                            .apply();
                     finishAffinity();
                     MainActivity.this.startActivity(
                             new Intent(MainActivity.this, LogInActivity.class)
@@ -158,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
                             String json = response.toString();
                             String identifierValue = JsonPath.read(json, "$.feidenavn.identifikatorverdi");
                             student.setStudentId(identifierValue);
-                            editor.putString(FintStudentAppSharedPreferences.studentID, identifierValue);
                             personHREF = JsonPath.read(json, "$._links.person[0].href");
                             studentRelationHREF = JsonPath.read(json, "$._links.elevforhold[0].href");
                         } catch (PathNotFoundException e) {
@@ -179,11 +172,7 @@ public class MainActivity extends AppCompatActivity {
                             String json = response.toString();
                             student.setFirstName(JsonPath.read(json, "$.navn.fornavn").toString());
                             student.setLastName(JsonPath.read(json, "$.navn.etternavn").toString());
-
                             student.setBirthDate(JsonPath.read(json, "$.fodselsdato").toString());
-                            editor.putString(FintStudentAppSharedPreferences.studentFirstName, student.getFirstName());
-                            editor.putString(FintStudentAppSharedPreferences.studentLastName, student.getLastName());
-                            editor.putString(FintStudentAppSharedPreferences.studentBirthDate, student.getBirthDate());
                         } catch (PathNotFoundException e) {
                             e.printStackTrace();
                             System.out.println(response);
@@ -217,11 +206,8 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             String json = response.toString();
                             school.setSchoolName(JsonPath.read(json, "$.navn").toString());
-                            editor.putString(FintStudentAppSharedPreferences.studentScoolName, school.getSchoolName());
                             school.setSchoolId(JsonPath.read(json, "$.skolenummer.identifikatorverdi").toString());
-                            editor.putString(FintStudentAppSharedPreferences.studentScoolID, school.getSchoolId());
                             student.setSchool(school);
-                            editor.apply();
                             drawUpStudent(student);
                         } catch (PathNotFoundException e) {
                             e.printStackTrace();
@@ -233,8 +219,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void drawUpStudent(Student studentToDraw) {
 
+        final ImageView studentProfilePicture = findViewById(R.id.front_page_student_picture);
         studentToDraw.setPhotoId(R.drawable.student_profile_picture);
         if (isPersonDataReceived) {
+            TextView studentNameTextView = findViewById(R.id.main_student_name_text_view);
             studentNameTextView.setText(String.format("%s %s", studentToDraw.getFirstName(), studentToDraw.getLastName()));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
             String birthDay = "";
@@ -251,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
             studentProfilePicture.setImageResource(studentToDraw.getPhotoId());
         }
         if (isSchoolDataReceived) {
+            TextView studentScoolNameTextView = findViewById(R.id.main_student_school_text_view);
             studentScoolNameTextView.setText(studentToDraw.getSchool().getSchoolName());
         }
 
