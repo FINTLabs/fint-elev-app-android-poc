@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,10 +34,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 
@@ -75,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
             Intent logInIntent = new Intent(this, LogInActivity.class);
             startActivity(logInIntent);
-        }
-        else{
-            String username = (getIntent().hasExtra("Brukernavn")) ? getIntent().getExtras().getString("Brukernavn") : mainActivitySharedPreferences.getString(FintStudentAppSharedPreferences.username,"no username");
-            if (username.equals("no username")){
+        } else {
+            String username = (getIntent().hasExtra("Brukernavn")) ? getIntent().getExtras().getString("Brukernavn") : mainActivitySharedPreferences.getString(FintStudentAppSharedPreferences.username, "no username");
+            if (username.equals("no username")) {
                 editor.putBoolean(FintStudentAppSharedPreferences.isLoggedIn, false);
                 editor.apply();
                 Intent logInIntent = new Intent(this, LogInActivity.class);
@@ -109,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        if (getIntent().hasExtra("openedDoor")){
+        if (getIntent().hasExtra("openedDoor")) {
             FrameLayout fl = findViewById(R.id.main_activity_frame_layout);
-            Snackbar.make(fl ,String.format("%s er åpnet!",getIntent().getExtras().getString("openedDoor")), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(fl, String.format("%s er åpnet!", getIntent().getExtras().getString("openedDoor")), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
         }
 
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
@@ -239,10 +236,10 @@ public class MainActivity extends AppCompatActivity {
         if (isPersonDataReceived) {
             studentNameTextView.setText(String.format("%s %s", studentToDraw.getFirstName(), studentToDraw.getLastName()));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-            String birthDay ="";
+            String birthDay = "";
             try {
                 Date date = sdf.parse(studentToDraw.getBirthDate());
-                birthDay = String.format( "%s-%s-%s",
+                birthDay = String.format("%s-%s-%s",
                         DateFormat.format("dd", date),
                         DateFormat.format("MM", date),
                         DateFormat.format("yyyy", date));
@@ -289,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
                 linearLayoutStudentProof.setBackgroundColor(getColor(R.color.colorError));
 
                 FrameLayout fl = findViewById(R.id.main_activity_frame_layout);
-                Snackbar.make(fl ,"Noe gikk galt :'(", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                Snackbar.make(fl, "Noe gikk galt :'(", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
                 Log.e("ERROR", volleyError.toString());
                 volleyError.printStackTrace();
