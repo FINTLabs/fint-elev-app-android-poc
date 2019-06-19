@@ -74,6 +74,7 @@ public class BusCardActivity extends AppCompatActivity {
                             .remove(FintStudentAppSharedPreferences.isLoggedIn)
                             .apply()
                     ;
+                    finishAffinity();
                     BusCardActivity.this.startActivity(
                             new Intent(BusCardActivity.this, LogInActivity.class)
                     );

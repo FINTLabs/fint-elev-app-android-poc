@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         studentProfilePicture = findViewById(R.id.front_page_student_picture);
         linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
-            Intent logInIntent = new Intent(this, LogInActivity.class);
-            startActivity(logInIntent);
+            finishAffinity();
+            startActivity(new Intent(this, LogInActivity.class));
         } else {
             String username = (getIntent().hasExtra("Brukernavn")) ? getIntent().getExtras().getString("Brukernavn") : mainActivitySharedPreferences.getString(FintStudentAppSharedPreferences.username, "no username");
             if (username.equals("no username")) {
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                             .remove(FintStudentAppSharedPreferences.isLoggedIn)
                             .apply()
                     ;
+                    finishAffinity();
                     MainActivity.this.startActivity(
                             new Intent(MainActivity.this, LogInActivity.class)
                     );
