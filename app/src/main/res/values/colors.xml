@@ -10,4 +10,7 @@
     <color name="colorVigoGreen">#8DC63F</color>
     <color name="colorError">#B71C1C</color>
     <color name="colorLightGray">#E0E0E0</color>
+    <color name="colorSubjectNorwegian">#D39E9E</color>
+    <color name="colorSubjectMath">#9EB0D3</color>
+    <color name="colorSubjectEnglish">#CFD39E</color>
 </resources>
