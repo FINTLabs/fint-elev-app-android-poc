@@ -32,11 +32,11 @@ public class DoorRecyclerViewAdapter extends RecyclerView.Adapter<DoorRecyclerVi
 
         DoorViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.doors_card_view);
-            doorName = (TextView) itemView.findViewById(R.id.door_name);
-            doorID = (TextView) itemView.findViewById(R.id.door_id);
-            doorPhoto = (ImageView) itemView.findViewById(R.id.door_photo);
-            openDoor = (Button) itemView.findViewById(R.id.button_open_door);
+            cv = itemView.findViewById(R.id.doors_card_view);
+            doorName = itemView.findViewById(R.id.door_name);
+            doorID = itemView.findViewById(R.id.door_id);
+            doorPhoto = itemView.findViewById(R.id.door_photo);
+            openDoor = itemView.findViewById(R.id.button_open_door);
         }
     }
 

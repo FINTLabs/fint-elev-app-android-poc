@@ -12,15 +12,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
-    EditText userNameEditText;
-    EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logg_inn);
-        userNameEditText = findViewById(R.id.user_login_email_input_field);
-        passwordEditText = findViewById(R.id.user_login_password_input_field);
+        final EditText userNameEditText = findViewById(R.id.user_login_email_input_field);
+        final EditText passwordEditText = findViewById(R.id.user_login_password_input_field);
         Button logInButton = findViewById(R.id.user_login_button);
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override

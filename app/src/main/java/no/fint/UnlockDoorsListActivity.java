@@ -14,7 +14,7 @@ public class UnlockDoorsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_for_doors);
         ArrayList<Door> doors = createDoors();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view_for_doors);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_for_doors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         DoorRecyclerViewAdapter doorRecyclerViewAdapter = new DoorRecyclerViewAdapter(doors, this);

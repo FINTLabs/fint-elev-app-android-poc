@@ -46,13 +46,6 @@ public class BusCardActivity extends AppCompatActivity {
 
         studentProfilePicture.setClipToOutline(true);
 
-        /*
-        LinearLayout linearLayoutBottomFrontPage = findViewById(R.id.student_bottom_text);
-        AnimatorSet glow = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.glow_animation);
-        glow.setTarget(linearLayoutBottomFrontPage);
-        glow.start();
-        */
-
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
 
         fabSpeedDialMenu.addOnMenuItemClickListener(new FabSpeedDial.OnMenuItemClickListener() {
