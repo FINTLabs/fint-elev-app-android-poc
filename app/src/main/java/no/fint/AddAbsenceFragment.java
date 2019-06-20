@@ -63,13 +63,6 @@ public class AddAbsenceFragment extends Fragment implements View.OnClickListener
         if (v.getId() == absenceAddButton.getId()) {
             AbsenceActivity activity = (AbsenceActivity) getActivity();
             activity.updateAbsence(absenceDayPicker.getValue(),absenceHourPicker.getValue());
-            Toast.makeText(getContext()
-                    ,String.format("%s dager og %s timer lagt til i fravær",
-                    absenceDayPicker.getValue(),
-                    absenceHourPicker.getValue()
-                    )
-                    ,Toast.LENGTH_LONG
-            ).show();
             getActivity().onBackPressed();
         }
     }

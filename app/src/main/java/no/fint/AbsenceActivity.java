@@ -17,11 +17,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 
@@ -51,11 +53,16 @@ public class AbsenceActivity extends AppCompatActivity {
                 studentProfilePicture.startAnimation(rotate);
             }
         });
-        TextView studentNameTextView = findViewById(R.id.absence_student_name_text_view);
-        studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
-        TextView studentSchoolName = findViewById(R.id.absence_student_school_text_view);
-        studentSchoolName.setText(student.getSchool().getSchoolName());
         studentProfilePicture.setClipToOutline(true);
+        final Button notSchoolToday = findViewById(R.id.button_not_school_today);
+        notSchoolToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateAbsence(1,0);
+                notSchoolToday.setEnabled(false);
+                notSchoolToday.setText("Takk for at du sier fra!");
+            }
+        });
 
         absenceRegisteredTextView = findViewById(R.id.text_view_absence_registered);
         absenceRegisteredTextView.setText(String.format("%s dager og %s timer", student.getAbsenceDays(), student.getAbsenceHours()));
@@ -81,6 +88,13 @@ public class AbsenceActivity extends AppCompatActivity {
         student.setAbsenceHours(hours + student.getAbsenceHours());
         student.setAbsenceDays(days + student.getAbsenceDays());
         absenceRegisteredTextView.setText(String.format("%s dager og %s timer", student.getAbsenceDays(), student.getAbsenceHours()));
+        Toast.makeText(this
+                ,String.format("%s dager og %s timer lagt til i fravær",
+                        days,
+                        hours
+                )
+                ,Toast.LENGTH_LONG
+        ).show();
     }
 
     private void getFragment(Fragment fragment) {
