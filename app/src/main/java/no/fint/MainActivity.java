@@ -105,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
 
+                if (itemId == R.id.fab_subject_schedule) {
+                    Intent intent = new Intent(MainActivity.this, StudentScheduleListActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
+                }
                 if (itemId == R.id.fab_buss) {
                     Intent intent = new Intent(MainActivity.this, BusCardActivity.class);
                     intent.putExtra("student", student);
