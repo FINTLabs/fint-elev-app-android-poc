@@ -28,6 +28,8 @@ import java.lang.reflect.Field;
 public class AbsenceActivity extends AppCompatActivity {
 
     TextView absenceRegisteredTextView;
+    Student student;
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class AbsenceActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        Student student = intent.getParcelableExtra("student");
+        student = intent.getParcelableExtra("student");
 
         LinearLayout linearLayoutStudentProof = findViewById(R.id.absence_proof_text_linear_layout);
         final ImageView studentProfilePicture = findViewById(R.id.absece_page_student_picture);
@@ -58,14 +60,29 @@ public class AbsenceActivity extends AppCompatActivity {
         absenceRegisteredTextView = findViewById(R.id.text_view_absence_registered);
         absenceRegisteredTextView.setText(String.format("%s dager og %s timer", student.getAbsenceDays(), student.getAbsenceHours()));
 
-        FloatingActionButton fab = findViewById(R.id.fab_add_abcense);
+        fab = findViewById(R.id.fab_add_abcense);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragment(AddAbsenceFragment.newInstance());
+
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0){
+                    fab.setRotation(45);
+                    getFragment(AddAbsenceFragment.newInstance());
+                }else{
+                    fab.setRotation(0);
+                    onBackPressed();
+                }
+
             }
         });
     }
+
+    public void updateAbsence(int days, int hours){
+        student.setAbsenceHours(hours + student.getAbsenceHours());
+        student.setAbsenceDays(days + student.getAbsenceDays());
+        absenceRegisteredTextView.setText(String.format("%s dager og %s timer", student.getAbsenceDays(), student.getAbsenceHours()));
+    }
+
     private void getFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
