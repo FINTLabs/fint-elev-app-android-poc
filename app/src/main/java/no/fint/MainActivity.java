@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         student = new Student();
         school = new School();
         student.setSchool(school);
+        student.setAbsenceDays(2);
+        student.setAbsenceHours(7);
         queue = Volley.newRequestQueue(this);
         linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
@@ -107,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (itemId == R.id.fab_subject_schedule) {
                     Intent intent = new Intent(MainActivity.this, StudentScheduleListActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
+                }
+                if (itemId == R.id.fab_absence) {
+                    Intent intent = new Intent(MainActivity.this, AbsenceActivity.class);
                     intent.putExtra("student", student);
                     startActivity(intent);
                 }
