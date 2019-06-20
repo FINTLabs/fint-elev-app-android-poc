@@ -9,4 +9,5 @@
     <color name="colorVigoBackground">#1F4F59</color>
     <color name="colorVigoGreen">#8DC63F</color>
     <color name="colorError">#B71C1C</color>
+    <color name="colorLightGray">#E0E0E0</color>
 </resources>
