@@ -13,12 +13,29 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="30"
-            android:text="TESTTTTT"
-            />
+            android:layout_weight="50"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <NumberPicker
+                android:id="@+id/number_picker_absence_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen">
+
+            </NumberPicker>
+            <NumberPicker
+                android:id="@+id/number_picker_absence_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen">
+
+            </NumberPicker>
+        </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>
