@@ -41,15 +41,11 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 public class MainActivity extends AppCompatActivity {
     Student student;
     School school;
-    SharedPreferences mainActivitySharedPreferences;
-    SharedPreferences.Editor editor;
     RequestQueue queue;
     String personHREF;
     String studentRelationHREF;
     String schoolHREF;
     boolean isPersonDataReceived, isSchoolDataReceived;
-
-    TextView studentBirthDateTextView;
     Response.ErrorListener errorListener;
     LinearLayout linearLayoutStudentProof;
 
@@ -57,13 +53,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainActivitySharedPreferences = getSharedPreferences(FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE);
-        editor = mainActivitySharedPreferences.edit();
+        SharedPreferences mainActivitySharedPreferences = getSharedPreferences(FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE);
+        SharedPreferences.Editor editor = mainActivitySharedPreferences.edit();
         student = new Student();
         school = new School();
         student.setSchool(school);
         queue = Volley.newRequestQueue(this);
-        studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
         linearLayoutStudentProof = findViewById(R.id.student_proof_text_linear_layout);
         if (!mainActivitySharedPreferences.getBoolean(FintStudentAppSharedPreferences.isLoggedIn, false)) {
             finishAffinity();
@@ -71,13 +66,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String username = (getIntent().hasExtra("Brukernavn")) ? getIntent().getExtras().getString("Brukernavn") : mainActivitySharedPreferences.getString(FintStudentAppSharedPreferences.username, "no username");
             if (username.equals("no username")) {
-                editor.putBoolean(FintStudentAppSharedPreferences.isLoggedIn, false);
-                editor.apply();
+                editor.putBoolean(FintStudentAppSharedPreferences.isLoggedIn, false).apply();
                 Intent logInIntent = new Intent(this, LogInActivity.class);
                 startActivity(logInIntent);
             }
-            editor.putString(FintStudentAppSharedPreferences.username, username);
-            editor.apply();
+            editor.putString(FintStudentAppSharedPreferences.username, username).apply();
             errorListener = getErrorListener();
             queue.add(getStudentData(username)).setTag("studentData");
             queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JsonObjectRequest>() {
@@ -150,8 +143,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String json = response.toString();
-                            String identifierValue = JsonPath.read(json, "$.feidenavn.identifikatorverdi");
-                            student.setStudentId(identifierValue);
+                            student.setStudentId(JsonPath.read(json, "$.feidenavn.identifikatorverdi").toString());
                             personHREF = JsonPath.read(json, "$._links.person[0].href");
                             studentRelationHREF = JsonPath.read(json, "$._links.elevforhold[0].href");
                         } catch (PathNotFoundException e) {
@@ -208,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
                             school.setSchoolName(JsonPath.read(json, "$.navn").toString());
                             school.setSchoolId(JsonPath.read(json, "$.skolenummer.identifikatorverdi").toString());
                             student.setSchool(school);
-                            drawUpStudent(student);
                         } catch (PathNotFoundException e) {
                             e.printStackTrace();
                             System.out.println(response);
@@ -235,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            TextView studentBirthDateTextView = findViewById(R.id.main_student_birth_date_text_view);
             studentBirthDateTextView.setText(birthDay);
             studentProfilePicture.setImageResource(studentToDraw.getPhotoId());
         }
