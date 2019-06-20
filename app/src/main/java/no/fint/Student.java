@@ -18,6 +18,8 @@ public class Student implements Parcelable {
     private String studentId;
     private School school;
     private int photoId;
+    private int absenceDays;
+    private int absenceHours;
 
     protected Student(Parcel in) {
         firstName = in.readString();
@@ -26,6 +28,8 @@ public class Student implements Parcelable {
         studentId = in.readString();
         school = in.readParcelable(School.class.getClassLoader());
         photoId = in.readInt();
+        absenceDays = in.readInt();
+        absenceHours = in.readInt();
     }
 
     public static final Creator<Student> CREATOR = new Creator<Student>() {
@@ -56,5 +60,7 @@ public class Student implements Parcelable {
         dest.writeString(this.studentId);
         dest.writeParcelable(this.school, flags);
         dest.writeInt(this.photoId);
+        dest.writeInt(this.absenceDays);
+        dest.writeInt(this.absenceHours);
     }
 }

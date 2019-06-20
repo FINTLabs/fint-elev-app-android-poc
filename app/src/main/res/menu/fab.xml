@@ -22,11 +22,17 @@
         android:title="Åpne dører"
         android:icon="@drawable/ic_vpn_key_white_24dp"
         android:orderInCategory="4"/>
+    <item
+        android:id="@+id/fab_absence"
+        android:title="Fravær"
+        android:icon="@drawable/ic_error_outline_white_24dp"
+        android:orderInCategory="5"
+        />
 
     <item
         android:id="@+id/fab_log_out"
         android:title="Logg ut"
         android:icon="@drawable/ic_undo_white_24dp"
-        android:orderInCategory="5"/>
+        android:orderInCategory="6"/>
 
 </menu>
