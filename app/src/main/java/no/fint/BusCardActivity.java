@@ -41,8 +41,8 @@ public class BusCardActivity extends AppCompatActivity {
         });
         TextView studentNameTextView = findViewById(R.id.bus_student_name_text_view);
         studentNameTextView.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
-        TextView studentScoolName = findViewById(R.id.bus_student_school_text_view);
-        studentScoolName.setText(student.getSchool().getSchoolName());
+        TextView studentSchoolName = findViewById(R.id.bus_student_school_text_view);
+        studentSchoolName.setText(student.getSchool().getSchoolName());
 
         studentProfilePicture.setClipToOutline(true);
 
