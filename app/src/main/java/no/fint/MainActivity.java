@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     );
                 }
                 if (itemId == R.id.fab_score_card) {
-                    Intent intent = new Intent(MainActivity.this, ScoreCardActivity.class);
+                    Intent intent = new Intent(MainActivity.this, RunningScoreCardActivity.class);
                     intent.putExtra("student", student);
                     startActivity(intent);
                 }
