@@ -13,6 +13,7 @@ public class UnlockDoorsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_for_doors);
+        getSupportActionBar().setTitle("Lås opp dører");
         ArrayList<Door> doors = createDoors();
         RecyclerView recyclerView = findViewById(R.id.recycler_view_for_doors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
