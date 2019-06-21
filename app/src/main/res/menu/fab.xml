@@ -28,11 +28,16 @@
         android:icon="@drawable/ic_error_outline_white_24dp"
         android:orderInCategory="5"
         />
+    <item
+        android:id="@+id/fab_score_card"
+        android:title="Karakterkort"
+        android:icon="@drawable/ic_assessment_white_24dp"
+        android:orderInCategory="6"/>
 
     <item
         android:id="@+id/fab_log_out"
         android:title="Logg ut"
         android:icon="@drawable/ic_undo_white_24dp"
-        android:orderInCategory="6"/>
+        android:orderInCategory="7"/>
 
 </menu>

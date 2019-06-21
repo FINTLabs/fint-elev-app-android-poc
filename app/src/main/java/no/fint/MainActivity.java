@@ -130,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
                             new Intent(MainActivity.this, UnlockDoorsListActivity.class)
                     );
                 }
+                if (itemId == R.id.fab_score_card) {
+                    Intent intent = new Intent(MainActivity.this, ScoreCardActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
+                }
                 if (itemId == R.id.fab_log_out) {
                     getSharedPreferences(
                             FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE)
