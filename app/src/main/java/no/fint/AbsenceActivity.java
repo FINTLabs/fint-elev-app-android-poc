@@ -13,13 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,33 +26,21 @@ public class AbsenceActivity extends AppCompatActivity {
     TextView absenceRegisteredTextView;
     Student student;
     FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance);
+        setContentView(R.layout.activity_absence);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
         student = intent.getParcelableExtra("student");
 
-        LinearLayout linearLayoutStudentProof = findViewById(R.id.absence_proof_text_linear_layout);
-        final ImageView studentProfilePicture = findViewById(R.id.absece_page_student_picture);
-        studentProfilePicture.setImageResource(student.getPhotoId());
-        linearLayoutStudentProof.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                rotate.setDuration(1500);
-                rotate.setInterpolator(new LinearInterpolator());
-                studentProfilePicture.startAnimation(rotate);
-            }
-        });
-        studentProfilePicture.setClipToOutline(true);
         final Button notSchoolToday = findViewById(R.id.button_not_school_today);
         notSchoolToday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateAbsence(1,0);
+                updateAbsence(1, 0);
                 notSchoolToday.setEnabled(false);
                 notSchoolToday.setText("Takk for at du sier fra!");
             }
@@ -71,10 +54,10 @@ public class AbsenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (getSupportFragmentManager().getBackStackEntryCount() == 0){
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                     fab.setRotation(45);
                     getFragment(AddAbsenceFragment.newInstance());
-                }else{
+                } else {
                     fab.setRotation(0);
                     onBackPressed();
                 }
@@ -83,16 +66,16 @@ public class AbsenceActivity extends AppCompatActivity {
         });
     }
 
-    public void updateAbsence(int days, int hours){
+    public void updateAbsence(int days, int hours) {
         student.setAbsenceHours(hours + student.getAbsenceHours());
         student.setAbsenceDays(days + student.getAbsenceDays());
         absenceRegisteredTextView.setText(String.format("%s dager og %s timer", student.getAbsenceDays(), student.getAbsenceHours()));
         Toast.makeText(this
-                ,String.format("%s dager og %s timer lagt til i fravær",
+                , String.format("%s dager og %s timer lagt til i fravær",
                         days,
                         hours
                 )
-                ,Toast.LENGTH_LONG
+                , Toast.LENGTH_LONG
         ).show();
     }
 

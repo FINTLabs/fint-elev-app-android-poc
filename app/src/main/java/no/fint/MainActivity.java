@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (getIntent().hasExtra("openedDoor")) {
             FrameLayout fl = findViewById(R.id.main_activity_frame_layout);
-            Snackbar.make(fl, String.format("%s er åpnet!", getIntent().getExtras().getString("openedDoor")), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(fl, String.format("%s er åpnet!", getIntent().getExtras().getString("openedDoor")), Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
 
         final FabSpeedDial fabSpeedDialMenu = findViewById(R.id.fab_menu);
