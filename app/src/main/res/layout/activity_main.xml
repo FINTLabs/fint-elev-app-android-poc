@@ -124,7 +124,8 @@
         app:fab_menu="@menu/fab"
         app:fab_miniFabBackgroundColor="@color/colorPrimary"
         app:fab_miniFabTextColor="@color/colorWhite"
-        app:fab_touchGuardColor="@color/colorTransparent" />
+        app:fab_touchGuardColor="@color/colorTransparent"
+        app:fab_extraMargin="-4dp"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"

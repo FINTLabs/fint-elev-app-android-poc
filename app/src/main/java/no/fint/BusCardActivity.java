@@ -26,7 +26,7 @@ public class BusCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bus_card);
 
         Intent intent = getIntent();
-        Student student = intent.getParcelableExtra("student");
+        final Student student = intent.getParcelableExtra("student");
         LinearLayout linearLayoutStudentProof = findViewById(R.id.bus_proof_text_linear_layout);
         final ImageView studentProfilePicture = findViewById(R.id.bus_page_student_picture);
         studentProfilePicture.setImageResource(student.getPhotoId());
@@ -52,6 +52,16 @@ public class BusCardActivity extends AppCompatActivity {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
 
+                if (itemId == R.id.fab_subject_schedule) {
+                    Intent intent = new Intent(BusCardActivity.this, StudentScheduleListActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
+                }
+                if (itemId == R.id.fab_absence) {
+                    Intent intent = new Intent(BusCardActivity.this, AbsenceActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
+                }
                 if (itemId == R.id.fab_library) {
                     getFragment(LibraryCardFragment.newInstance());
                 }
@@ -65,8 +75,7 @@ public class BusCardActivity extends AppCompatActivity {
                             FintStudentAppSharedPreferences.sharedPreferencesMainKey, MODE_PRIVATE)
                             .edit()
                             .remove(FintStudentAppSharedPreferences.isLoggedIn)
-                            .apply()
-                    ;
+                            .apply();
                     finishAffinity();
                     BusCardActivity.this.startActivity(
                             new Intent(BusCardActivity.this, LogInActivity.class)
