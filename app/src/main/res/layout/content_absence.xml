@@ -10,30 +10,19 @@
     android:weightSum="100"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AbsenceActivity"
-    tools:showIn="@layout/activity_attendance">
+    tools:showIn="@layout/activity_absence">
 
 
-    <ImageView
-        android:id="@+id/absence_activity_school_title_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/standard_dimen"
-        android:layout_weight="17"
-        android:scaleType="fitCenter"
-        android:src="@drawable/skien_vgs_logo" />
-
-
-    <ImageView
-        android:id="@+id/absece_page_student_picture"
-        android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/standard_dimen"
-        android:layout_weight="40"
-        android:background="@drawable/picture_frame"
-        android:elevation="5dp"
-        android:scaleType="centerInside" />
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="0dp"
+     android:layout_weight="37"
+     android:textColor="@color/colorPrimary"
+     android:text="Ditt registrerte fravær"
+     android:textSize="28sp"
+     android:textAlignment="center"
+     android:gravity="center"
+     android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/absence_proof_text_linear_layout"
@@ -46,20 +35,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="REGISTRERT FRAVÆR:"
-            android:textColor="@color/colorWhite"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/text_view_absence_registered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/colorWhite"
             android:textSize="20dp"
@@ -70,7 +49,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21"
+        android:layout_weight="41"
         android:background="@drawable/text_frame"
         android:gravity="center"
         android:orientation="vertical">

@@ -24,7 +24,7 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_attendance" />
+        <include layout="@layout/content_absence" />
 
 
     </android.support.design.widget.CoordinatorLayout>

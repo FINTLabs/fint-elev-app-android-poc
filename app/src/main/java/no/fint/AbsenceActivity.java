@@ -34,25 +34,12 @@ public class AbsenceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance);
+        setContentView(R.layout.activity_absence);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
         student = intent.getParcelableExtra("student");
 
-        LinearLayout linearLayoutStudentProof = findViewById(R.id.absence_proof_text_linear_layout);
-        final ImageView studentProfilePicture = findViewById(R.id.absece_page_student_picture);
-        studentProfilePicture.setImageResource(student.getPhotoId());
-        linearLayoutStudentProof.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                rotate.setDuration(1500);
-                rotate.setInterpolator(new LinearInterpolator());
-                studentProfilePicture.startAnimation(rotate);
-            }
-        });
-        studentProfilePicture.setClipToOutline(true);
         final Button notSchoolToday = findViewById(R.id.button_not_school_today);
         notSchoolToday.setOnClickListener(new View.OnClickListener() {
             @Override
