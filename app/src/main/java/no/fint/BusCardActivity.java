@@ -25,6 +25,7 @@ public class BusCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_card);
 
+        getSupportActionBar().setTitle("Ditt reisebevis");
         Intent intent = getIntent();
         final Student student = intent.getParcelableExtra("student");
         LinearLayout linearLayoutStudentProof = findViewById(R.id.bus_proof_text_linear_layout);
@@ -69,6 +70,11 @@ public class BusCardActivity extends AppCompatActivity {
                     BusCardActivity.this.startActivity(
                             new Intent(BusCardActivity.this, UnlockDoorsListActivity.class)
                     );
+                }
+                if (itemId == R.id.fab_score_card) {
+                    Intent intent = new Intent(BusCardActivity.this, RunningScoreCardActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
                 }
                 if (itemId == R.id.fab_log_out) {
                     getSharedPreferences(
