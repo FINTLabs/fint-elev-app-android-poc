@@ -13,16 +13,16 @@
     tools:showIn="@layout/activity_absence">
 
 
- <TextView
-     android:layout_width="match_parent"
-     android:layout_height="0dp"
-     android:layout_weight="37"
-     android:textColor="@color/colorPrimary"
-     android:text="Ditt registrerte fravær"
-     android:textSize="28sp"
-     android:textAlignment="center"
-     android:gravity="center"
-     android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="37"
+        android:gravity="center"
+        android:text="Ditt registrerte fravær"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/absence_proof_text_linear_layout"
