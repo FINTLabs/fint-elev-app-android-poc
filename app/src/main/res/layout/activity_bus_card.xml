@@ -20,9 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:scaleType="fitCenter"
             android:layout_marginTop="@dimen/standard_dimen"
             android:layout_weight="17"
+            android:scaleType="fitCenter"
             android:src="@drawable/farte_logo" />
 
 
@@ -54,9 +54,8 @@
                 android:gravity="center"
                 android:text="GYLDIG BUSSKORT"
                 android:textColor="@color/colorWhite"
-                android:textStyle="bold"
                 android:textSize="16dp"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,9 +64,8 @@
                 android:gravity="center"
                 android:text="Skoleåret 2019/2020"
                 android:textColor="@color/colorWhite"
-                android:textStyle="bold"
                 android:textSize="20dp"
-                />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -84,7 +82,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/standard_dimen"/>
+                android:layout_margin="@dimen/standard_dimen" />
 
             <TextView
                 android:id="@+id/bus_student_school_text_view"

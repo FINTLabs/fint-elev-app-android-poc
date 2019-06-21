@@ -19,9 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:scaleType="fitCenter"
             android:layout_margin="@dimen/bus_card_verified_dimen"
             android:layout_weight="30"
+            android:scaleType="fitCenter"
             android:src="@drawable/feide_logo" />
 
         <android.support.design.widget.TextInputLayout
@@ -55,11 +55,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Passord"
-                android:textColorHint="@color/colorPrimary"
                 android:imeOptions="actionGo"
                 android:inputType="textPassword"
                 android:paddingStart="10dp"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -67,14 +67,15 @@
             android:layout_height="0dp"
             android:layout_weight="30"
             android:gravity="center">
-        <Button
-            android:id="@+id/user_login_button"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Logg inn"
-            android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/user_login_button"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Logg inn"
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
 
         <ImageView
@@ -83,7 +84,7 @@
             android:layout_gravity="start"
             android:layout_marginTop="@dimen/standard_dimen"
             android:layout_weight="10"
-            android:src="@drawable/ic_vigo"/>
+            android:src="@drawable/ic_vigo" />
     </LinearLayout>
 
 </FrameLayout>

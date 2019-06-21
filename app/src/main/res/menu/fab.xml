@@ -2,42 +2,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fab_subject_schedule"
-        android:title="Timeplan"
         android:icon="@drawable/ic_school_white_24dp"
         android:orderInCategory="1"
-        />
+        android:title="Timeplan" />
     <item
         android:id="@+id/fab_buss"
-        android:title="Skoleskyss"
         android:icon="@drawable/ic_directions_bus_white_24dp"
         android:orderInCategory="2"
-        />
+        android:title="Skoleskyss" />
     <item
         android:id="@+id/fab_library"
-        android:title="Bibliotekskort"
         android:icon="@drawable/ic_library_books_white_24dp"
-        android:orderInCategory="3"/>
+        android:orderInCategory="3"
+        android:title="Bibliotekskort" />
     <item
         android:id="@+id/fab_open_doors"
-        android:title="Åpne dører"
         android:icon="@drawable/ic_vpn_key_white_24dp"
-        android:orderInCategory="4"/>
+        android:orderInCategory="4"
+        android:title="Åpne dører" />
     <item
         android:id="@+id/fab_absence"
-        android:title="Fravær"
         android:icon="@drawable/ic_error_outline_white_24dp"
         android:orderInCategory="5"
-        />
+        android:title="Fravær" />
     <item
         android:id="@+id/fab_score_card"
-        android:title="Karakterkort"
         android:icon="@drawable/ic_assessment_white_24dp"
-        android:orderInCategory="6"/>
+        android:orderInCategory="6"
+        android:title="Karakterkort" />
 
     <item
         android:id="@+id/fab_log_out"
-        android:title="Logg ut"
         android:icon="@drawable/ic_undo_white_24dp"
-        android:orderInCategory="7"/>
+        android:orderInCategory="7"
+        android:title="Logg ut" />
 
 </menu>

@@ -4,14 +4,11 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class AddAbsenceFragment extends Fragment implements View.OnClickListener {
     private OnFragmentInteractionListener mListener;
@@ -62,7 +59,7 @@ public class AddAbsenceFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         if (v.getId() == absenceAddButton.getId()) {
             AbsenceActivity activity = (AbsenceActivity) getActivity();
-            activity.updateAbsence(absenceDayPicker.getValue(),absenceHourPicker.getValue());
+            activity.updateAbsence(absenceDayPicker.getValue(), absenceHourPicker.getValue());
             activity.fab.setRotation(0);
             activity.onBackPressed();
         }

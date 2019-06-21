@@ -9,15 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class StudentScheduleListActivity extends AppCompatActivity {
 
@@ -26,6 +20,7 @@ public class StudentScheduleListActivity extends AppCompatActivity {
     TextView studentScheduleDate;
     StudentScheduleRecyclerViewAdapter subjectRecyclerViewAdapter;
     ArrayList<Subject> subjects;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +51,7 @@ public class StudentScheduleListActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendar.add(Calendar.DATE,i);
+                calendar.add(Calendar.DATE, i);
                 date = calendar.getTime();
                 studentScheduleDate.setText(String.format("%s-%s-%s",
                         DateFormat.format("dd", date),
@@ -71,20 +66,20 @@ public class StudentScheduleListActivity extends AppCompatActivity {
 
     private void createSubjects() {
         for (int i = 0; i < 3; i++) {
-            String subject,teacher, startTime, endTime;
+            String subject, teacher, startTime, endTime;
             double random = Math.random();
-            if (random<0.33){
+            if (random < 0.33) {
                 subject = "Norsk";
                 teacher = "Henrik Ibset";
-            }else if (random>0.66){
+            } else if (random > 0.66) {
                 subject = "Matte";
                 teacher = "Albert Tostein";
-            }else{
+            } else {
                 subject = "Engelsk";
                 teacher = "Petter Solberg";
             }
-            startTime = (i==0) ? "08:30" : (i==1) ? "10:30" : "12:30";
-            endTime = (i==0) ? "10:00" : (i==1) ? "12:00" : "14:00";
+            startTime = (i == 0) ? "08:30" : (i == 1) ? "10:30" : "12:30";
+            endTime = (i == 0) ? "10:00" : (i == 1) ? "12:00" : "14:00";
             subjects.add(Subject.builder().name(subject).startTime(startTime).endTime(endTime).teacherName(teacher).build());
         }
     }

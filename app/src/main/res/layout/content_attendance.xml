@@ -79,12 +79,11 @@
             android:id="@+id/button_not_school_today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/no_school_button_selector"
             android:enabled="true"
             android:padding="@dimen/standard_dimen"
             android:text="Jeg kommer ikke til skolen i dag"
-            android:background="@drawable/no_school_button_selector"
-            android:textColor="@color/colorWhite"
-            />
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 

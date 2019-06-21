@@ -1,8 +1,8 @@
 package no.fint;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,7 +19,7 @@ public class RunningScoreCardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final Student student = intent.getParcelableExtra("student");
         TextView underTitelText = findViewById(R.id.score_card_under_title);
-        underTitelText.setText(String.format("%s %s",student.getFirstName(),student.getLastName()));
+        underTitelText.setText(String.format("%s %s", student.getFirstName(), student.getLastName()));
         Button toScoreCardActivity = findViewById(R.id.to_score_card_button);
         toScoreCardActivity.setOnClickListener(new View.OnClickListener() {
             @Override
