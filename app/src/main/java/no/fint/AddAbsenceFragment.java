@@ -63,7 +63,8 @@ public class AddAbsenceFragment extends Fragment implements View.OnClickListener
         if (v.getId() == absenceAddButton.getId()) {
             AbsenceActivity activity = (AbsenceActivity) getActivity();
             activity.updateAbsence(absenceDayPicker.getValue(),absenceHourPicker.getValue());
-            getActivity().onBackPressed();
+            activity.fab.setRotation(0);
+            activity.onBackPressed();
         }
     }
 
