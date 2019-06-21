@@ -8,24 +8,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="100"
         android:background="@color/colorTransparent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        android:weightSum="100">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Legg til fravær"
-            android:textSize="24sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <NumberPicker
                 android:id="@+id/number_picker_absence_days"
@@ -34,6 +34,7 @@
                 android:layout_margin="@dimen/standard_dimen">
 
             </NumberPicker>
+
             <NumberPicker
                 android:id="@+id/number_picker_absence_hours"
                 android:layout_width="wrap_content"
@@ -42,12 +43,13 @@
 
             </NumberPicker>
         </LinearLayout>
+
         <Button
             android:id="@+id/absence_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oppdater fravær"
-            android:backgroundTint="@color/colorPrimary" />
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Oppdater fravær" />
 
     </LinearLayout>
 

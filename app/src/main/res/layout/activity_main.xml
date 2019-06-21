@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:id="@+id/main_activity_frame_layout">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
             android:layout_marginTop="@dimen/standard_dimen"
             android:layout_weight="17"
+            android:scaleType="centerCrop"
             android:src="@drawable/telemark_fylkeskommune_logo" />
 
 
@@ -56,8 +56,8 @@
                 android:gravity="center"
                 android:text="GYLDIG ELEVBEVIS"
                 android:textColor="@color/colorWhite"
-                android:textStyle="bold"
                 android:textSize="16dp"
+                android:textStyle="bold"
 
                 />
 
@@ -69,9 +69,8 @@
                 android:gravity="center"
                 android:text="Skoleåret 2019/2020"
                 android:textColor="@color/colorWhite"
-                android:textStyle="bold"
                 android:textSize="20dp"
-                />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -93,7 +92,7 @@
                 android:id="@+id/main_student_birth_date_text_view"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/main_student_school_text_view"
@@ -118,14 +117,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
+        app:fab_extraMargin="-4dp"
         app:fab_fabBackgroundColor="@color/colorPrimary"
         app:fab_fabDrawable="@drawable/ic_menu_white_24dp"
         app:fab_fabRotationAngle="90"
         app:fab_menu="@menu/fab"
         app:fab_miniFabBackgroundColor="@color/colorPrimary"
         app:fab_miniFabTextColor="@color/colorWhite"
-        app:fab_touchGuardColor="@color/colorTransparent"
-        app:fab_extraMargin="-4dp"/>
+        app:fab_touchGuardColor="@color/colorTransparent" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
