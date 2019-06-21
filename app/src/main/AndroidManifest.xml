@@ -15,7 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScoreCardActivity"></activity>
+        <activity
+            android:name=".RunningScoreCardActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ScoreCardActivity"
+            android:parentActivityName=".RunningScoreCardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RunningScoreCardActivity" />
+        </activity>
         <activity
             android:name=".AbsenceActivity"
             android:label="@string/title_activity_attendance"

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RunningScoreCardActivity"
+    android:gravity="top|center">
+
+    <TextView
+        android:id="@+id/score_card_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_dimen"
+        android:text="Vurdering"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/score_card_under_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_dimen">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="Prøver"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:layout_margin="@dimen/standard_dimen"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:padding="5dp"
+            android:background="@color/colorLightGray">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Dato"
+                android:textAlignment="center"
+                android:paddingStart="5dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Emne"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Karakter"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="24-02-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Norsk"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:background="@color/colorLightGray"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="28-02-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Kroppsøving"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="4"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="04-03-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Tysk"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp"/>
+
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="4"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:background="@color/colorLightGray"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="05-03-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Matte"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="6"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:padding="5dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="19-03-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Engelsk"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="3"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:background="@color/colorLightGray"
+            android:padding="5dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="05-04-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Historie"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="4"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="30-04-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Norsk"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:weightSum="3"
+            android:background="@color/colorLightGray"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="01-05-2019"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Naturfag"
+                android:textAlignment="textStart"
+                android:paddingStart="5dp" />
+
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="6"
+                android:textAlignment="center" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/to_score_card_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/standard_dimen"
+        android:layout_margin="@dimen/standard_dimen"
+        android:background="@drawable/no_school_button_enabled_drawable"
+        android:text="Standpunkt, eksamen og fravær"
+        android:textColor="@color/colorWhite"
+        />
+
+</LinearLayout>
